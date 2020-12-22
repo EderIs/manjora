@@ -29,6 +29,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
+	//Método para listar Usuarios
 	@GetMapping("/list")
 	public ResponseEntity<List<Usuario>> List(){
 		List<Usuario> list = usuarioService.list();
