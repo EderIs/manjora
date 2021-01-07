@@ -12,8 +12,10 @@ import javax.persistence.Table;
 @Table(name = "usuarios")
 public class Usuario {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nombreUsuario;
 	private String direccionCorreo;
@@ -92,6 +94,9 @@ public class Usuario {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }
