@@ -22,7 +22,7 @@ import com.manjora.project.manjora.entity.Usuario;
 import com.manjora.project.manjora.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioController {
 	
