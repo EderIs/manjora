@@ -7,7 +7,7 @@ public class HorarioTrabajoDto {
 
 	//Validaciones al final dependiendo requerimientos
 	
-	private String nombre;
+	private String nombreHorariosT;
 	private String diaSemana;
 	private Time trabajarDesde;
 	private Time trabajarHasta;
@@ -18,10 +18,10 @@ public class HorarioTrabajoDto {
 	// private HorasLaborales horasLaborales;
 	public HorarioTrabajoDto() {
 	}
-	public HorarioTrabajoDto(String nombre, String diaSemana, Time trabajarDesde, Time trabajarHasta, Date fechaInicio,
+	public HorarioTrabajoDto(String nombreHorariosT, String diaSemana, Time trabajarDesde, Time trabajarHasta, Date fechaInicio,
 			Date fechaFinalizacion, String periodoDia) {
 		
-		this.nombre = nombre;
+		this.nombreHorariosT = nombreHorariosT;
 		this.diaSemana = diaSemana;
 		this.trabajarDesde = trabajarDesde;
 		this.trabajarHasta = trabajarHasta;
@@ -29,11 +29,11 @@ public class HorarioTrabajoDto {
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.periodoDia = periodoDia;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombreHorariosT() {
+		return nombreHorariosT;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreHorariosT(String nombreHorariosT) {
+		this.nombreHorariosT = nombreHorariosT;
 	}
 	public String getDiaSemana() {
 		return diaSemana;

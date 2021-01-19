@@ -13,14 +13,14 @@ public class HoraLaboral {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nombre;
+	private String nombreHoraL;
 	private Double promedioHoraDia;
 	
 	public HoraLaboral() {}
 
-	public HoraLaboral( String nombre, Double promedioHoraDia) {
+	public HoraLaboral( String nombreHoraL, Double promedioHoraDia) {
 		
-		this.nombre = nombre;
+		this.nombreHoraL = nombreHoraL;
 		this.promedioHoraDia = promedioHoraDia;
 	}
 
@@ -32,12 +32,12 @@ public class HoraLaboral {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreHoraL() {
+		return nombreHoraL;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreHoraL(String nombreHoraL) {
+		this.nombreHoraL = nombreHoraL;
 	}
 
 	public Double getPromedioHoraDia() {
