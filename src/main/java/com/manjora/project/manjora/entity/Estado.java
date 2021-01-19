@@ -1,18 +1,11 @@
 package com.manjora.project.manjora.entity;
-
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -29,7 +22,7 @@ public class Estado  {
 	private String nombreEstado;
 	private int codigo;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="pais_id",referencedColumnName = "id")
 	private Pais pais;
 	
@@ -56,9 +49,6 @@ public class Estado  {
 		return nombreEstado;
 	}
 
-	public void setNombreEstado(String nombre) {
-		this.nombreEstado = nombreEstado;
-	}
 
 	public int getCodigo() {
 		return codigo;
