@@ -47,11 +47,11 @@ public class BancoController {
 		return new ResponseEntity<Banco>(banco,HttpStatus.OK);
 	}
 	
-	@GetMapping("/detailname/{nombreBanco}")
-	public ResponseEntity<Banco> getByNombreUsuario(@PathVariable("nombreBanco") String nombreBanco){
-		if(!bancoService.existsByNombreBanco(nombreBanco))
+	@GetMapping("/detailname/{nombre}")
+	public ResponseEntity<Banco> getByNombreBanco(@PathVariable("nombre") String nombre){
+		if(!bancoService.existsByNombre(nombre))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		Banco banco = bancoService.getByNombreBanco(nombreBanco).get();
+		Banco banco = bancoService.getByNombre(nombre).get();
 		return new ResponseEntity<Banco>(banco,HttpStatus.OK);
 	}
 	
@@ -59,7 +59,7 @@ public class BancoController {
 	public ResponseEntity<?> create(@RequestBody BancoDto bancoDto){
 		if(StringUtils.isBlank(bancoDto.getNombre()))
 			return new ResponseEntity(new Mensaje("El Nombre del banco es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(bancoService.existsByNombreBanco(bancoDto.getNombre()))
+		if(bancoService.existsByNombre(bancoDto.getNombre()))
 			return new ResponseEntity(new Mensaje("El banco ingresado ya existe"),HttpStatus.BAD_REQUEST);
 		Banco banco = new Banco(bancoDto.getNombre(),bancoDto.getCodigoIdenBancaria(), bancoDto.getCalle(), 
 				bancoDto.getCalleSecundaria(), bancoDto.getCiudad(), bancoDto.getCodigoPostal(),
@@ -72,7 +72,7 @@ public class BancoController {
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody BancoDto bancoDto){
 		if(!bancoService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		if(bancoService.existsByNombreBanco(bancoDto.getNombre()) && bancoService.getByNombreBanco(bancoDto.getNombre()).get().getId() != id)
+		if(bancoService.existsByNombre(bancoDto.getNombre()) && bancoService.getByNombre(bancoDto.getNombre()).get().getId() != id)
 			return new ResponseEntity(new Mensaje("El Banco ingresado ya existe"),HttpStatus.BAD_REQUEST);
 		if(StringUtils.isBlank(bancoDto.getNombre()))
 			return new ResponseEntity(new Mensaje("El banco es Obligatorio"), HttpStatus.BAD_REQUEST);

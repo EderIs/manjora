@@ -10,7 +10,7 @@ import com.manjora.project.manjora.entity.Banco;
 @Repository
 public interface BancoRepository extends JpaRepository<Banco, Long>{
 
-	Optional<Banco> findByNombreBanco(String nombreBanco);
-	boolean existsByNombreBanco(String nombreBanco);
+	Optional<Banco> findByNombre(String nombre);
+	boolean existsByNombre(String nombre);
 	
 }

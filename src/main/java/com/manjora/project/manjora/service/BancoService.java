@@ -16,7 +16,7 @@ import com.manjora.project.manjora.repository.BancoRepository;
 public class BancoService {
 
 	@Autowired
-	private BancoRepository bancoRepository;
+	BancoRepository bancoRepository;
 	
 	
 	public List<Banco> list(){
@@ -27,8 +27,8 @@ public class BancoService {
 		return bancoRepository.findById(id);
 	}
 	
-	public Optional<Banco> getByNombreBanco(String nombreBanco){
-		return bancoRepository.findByNombreBanco(nombreBanco);
+	public Optional<Banco> getByNombre(String nombreBanco){
+		return bancoRepository.findByNombre(nombreBanco);
 	}
 	
 	public void save(Banco Banco) {
@@ -43,8 +43,8 @@ public class BancoService {
 		return bancoRepository.existsById(id);
 	}
 	
-	public boolean existsByNombreBanco(String nombreBanco) {
-		return bancoRepository.existsByNombreBanco(nombreBanco);
+	public boolean existsByNombre(String nombre) {
+		return bancoRepository.existsByNombre(nombre);
 	}
 	
 	
