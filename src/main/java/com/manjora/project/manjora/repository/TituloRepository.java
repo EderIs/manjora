@@ -11,7 +11,7 @@ import com.manjora.project.manjora.entity.Usuario;
 @Repository
 public interface TituloRepository  extends JpaRepository<Titulo,Long>{
 
-	Optional<Titulo> findByNombreTitulo(String nombreTitulo);
-	boolean existsByNombreTitulo(String nombreTitulo);
+	Optional<Titulo> findByTitulo(String nombreTitulo);
+	boolean existsByTitulo(String nombreTitulo);
 	
 }
