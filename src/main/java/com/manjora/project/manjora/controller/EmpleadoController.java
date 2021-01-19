@@ -25,7 +25,7 @@ import com.manjora.project.manjora.entity.Puesto;
 import com.manjora.project.manjora.service.EmpleadoService;
 
 @RestController
-@RequestMapping("/puesto")
+@RequestMapping("/empleado")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EmpleadoController {
 

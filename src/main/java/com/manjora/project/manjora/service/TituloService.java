@@ -26,8 +26,8 @@ public class TituloService {
 		return tituloRepository.findById(id);
 	}
 	
-	public Optional<Titulo> getByNombreTitulo(String nombreTitulo){
-		return tituloRepository.findByNombreTitulo(nombreTitulo);
+	public Optional<Titulo> getByNombreTitulo(String titulo){
+		return tituloRepository.findByTitulo(titulo);
 	}
 	
 	public void save(Titulo Titulo) {
@@ -42,7 +42,7 @@ public class TituloService {
 		return tituloRepository.existsById(id);
 	}
 	
-	public boolean existsByNombreTitulo(String nombreTitulo) {
-		return tituloRepository.existsByNombreTitulo(nombreTitulo);
+	public boolean existsByTitulo(String titulo) {
+		return tituloRepository.existsByTitulo(titulo);
 	}
 }
