@@ -16,7 +16,7 @@ public class Contacto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
+	private String nombreContacto;
 	private boolean tipoContacto;
 	private byte fotografia;
 	
@@ -62,12 +62,12 @@ public class Contacto {
 	}
 
 
-	public Contacto(String nombre, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+	public Contacto(String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
 			boolean rol, Usuario usuario, String referenciaInterna) {
 		super();
-		this.nombre = nombre;
+		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
 		this.fotografia = fotografia;
 		this.contacto = contacto;
@@ -100,13 +100,13 @@ public class Contacto {
 	}
 
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreContacto() {
+		return nombreContacto;
 	}
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
 	}
 
 

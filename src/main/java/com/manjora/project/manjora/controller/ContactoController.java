@@ -52,11 +52,11 @@ public class ContactoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody ContactoDto contactoDto){
-		if(StringUtils.isBlank(contactoDto.getNombre()))
+		if(StringUtils.isBlank(contactoDto.getNombreContacto()))
 			return new ResponseEntity(new Mensaje("El Nombre del Contacto es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(contactoService.existsByNombreContacto(contactoDto.getNombre()))
+		if(contactoService.existsByNombreContacto(contactoDto.getNombreContacto()))
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		Contacto contacto = new Contacto(contactoDto.getNombre(),contactoDto.isTipoContacto(),
+		Contacto contacto = new Contacto(contactoDto.getNombreContacto(),contactoDto.isTipoContacto(),
 				contactoDto.getFotografia(),contactoDto.getContacto(),
 				contactoDto.getCalle(),contactoDto.getCalleSecundaria(),contactoDto.getCiudad(),
 				contactoDto.getEstado(),contactoDto.getCodigoPostal(),contactoDto.getNif(),
@@ -72,12 +72,12 @@ public class ContactoController {
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody ContactoDto contactoDto){
 		if(!contactoService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		if(contactoService.existsByNombreContacto(contactoDto.getNombre()) && contactoService.getByNombreContacto(contactoDto.getNombre()).get().getId() != id)
+		if(contactoService.existsByNombreContacto(contactoDto.getNombreContacto()) && contactoService.getByNombreContacto(contactoDto.getNombreContacto()).get().getId() != id)
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		if(StringUtils.isBlank(contactoDto.getNombre()))
+		if(StringUtils.isBlank(contactoDto.getNombreContacto()))
 			return new ResponseEntity(new Mensaje("El Nombre del Contacto es Obligatorio"), HttpStatus.BAD_REQUEST);
 		Contacto contacto = contactoService.getOne(id).get();
-		contacto.setNombre(contactoDto.getNombre());
+		contacto.setNombreContacto(contactoDto.getNombreContacto());
 		contacto.setTipoContacto(contactoDto.isTipoContacto());
 		contacto.setFotografia(contactoDto.getFotografia());
 		contacto.setContacto(contactoDto.getContacto());

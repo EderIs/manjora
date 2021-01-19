@@ -18,7 +18,7 @@ public class Estado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
+	private String nombreEstado;
 	private int codigo;
 	
 	
@@ -30,9 +30,9 @@ public class Estado {
 
 	}
 
-	public Estado(String nombre, int codigo, Pais pais) {
+	public Estado(String nombreEstado, int codigo, Pais pais) {
 		super();
-		this.nombre = nombre;
+		this.nombreEstado = nombreEstado;
 		this.codigo = codigo;
 		this.pais = pais;
 	}
@@ -45,12 +45,12 @@ public class Estado {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreEstado() {
+		return nombreEstado;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreEstado(String nombre) {
+		this.nombreEstado = nombreEstado;
 	}
 
 	public int getCodigo() {

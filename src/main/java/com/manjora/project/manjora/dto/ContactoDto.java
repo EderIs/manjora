@@ -13,20 +13,18 @@ import com.manjora.project.manjora.entity.Usuario;
 public class ContactoDto {
 
 	@NotBlank
-	private String nombre;
+	private String nombreContacto;
 	private boolean tipoContacto;
 	private byte fotografia;
 
-	@OneToOne
-	@JoinColumn(name = "compania_id")
+	
 	private Contacto contacto;
 
 	private String calle;
 	private String calleSecundaria;
 	private String ciudad;
 
-	@ManyToOne
-	@JoinColumn(name = "estados_id")
+	
 	private Estado estado;
 
 	private int codigoPostal;
@@ -37,14 +35,11 @@ public class ContactoDto {
 	private String correoElectronico;
 	private String sitioWeb;
 
-	@ManyToOne
-	@JoinColumn(name = "titulos_id")
+	
 	private Titulo titulo;
 	private String notas;
 	private boolean rol;
 
-	@ManyToOne
-	@JoinColumn(name = "comercial_id")
 	private Usuario usuario;
 
 	private String referenciaInterna;
@@ -53,12 +48,12 @@ public class ContactoDto {
 
 	}
 
-	public ContactoDto(@NotBlank String nombre, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+	public ContactoDto(@NotBlank String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
 			boolean rol, Usuario usuario, String referenciaInterna) {
 		super();
-		this.nombre = nombre;
+		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
 		this.fotografia = fotografia;
 		this.contacto = contacto;
@@ -80,12 +75,12 @@ public class ContactoDto {
 		this.referenciaInterna = referenciaInterna;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreContacto() {
+		return nombreContacto;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
 	}
 
 	public boolean isTipoContacto() {
