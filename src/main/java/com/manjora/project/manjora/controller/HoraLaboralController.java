@@ -54,10 +54,10 @@ public class HoraLaboralController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody HoraLaboralDto horaLaboralDto){
-		if(StringUtils.isBlank(horaLaboralDto.getNombre()))
+		if(StringUtils.isBlank(horaLaboralDto.getNombreHoraL()))
 			return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
 		
-		HoraLaboral horaLaboral =new HoraLaboral(horaLaboralDto.getNombre(),horaLaboralDto.getPromedioHoraDia());
+		HoraLaboral horaLaboral =new HoraLaboral(horaLaboralDto.getNombreHoraL(),horaLaboralDto.getPromedioHoraDia());
 		return new ResponseEntity(new Mensaje("Hora laboral Creada"),HttpStatus.OK);
 	}
 	
@@ -67,12 +67,12 @@ public class HoraLaboralController {
 			return new ResponseEntity(new Mensaje("No Existe el estado"), HttpStatus.NOT_FOUND);
 		//if(horariosService.existsByNombreTitulo(tituloDto.getTitulo()) && tituloService.getByNombreTitulo(tituloDto.getTitulo()).get().getId() != id)
 			//return new ResponseEntity(new Mensaje("El Estado ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		if(StringUtils.isBlank(horaLaboralDto.getNombre()))
+		if(StringUtils.isBlank(horaLaboralDto.getNombreHoraL()))
 			return new ResponseEntity(new Mensaje("La hora laboral es Obligatoria"), HttpStatus.BAD_REQUEST);
 		
 		HoraLaboral horaLaboral = horaLaboralService.getOne(id).get();
 		
-		horaLaboral.setNombre(horaLaboralDto.getNombre());
+		horaLaboral.setNombreHoraL(horaLaboralDto.getNombreHoraL());
 		horaLaboral.setPromedioHoraDia(horaLaboralDto.getPromedioHoraDia());
 		
 		horaLaboralService.save(horaLaboral);

@@ -49,7 +49,7 @@ public class HorariosTrabajoController {
 	
 	@GetMapping("/detailname/{nombreHorarioT}")
 	public ResponseEntity<HorariosDeTrabajo> getBynombreHorarioT(@PathVariable("nombreHorarioT") String nombreHorarioT){
-		if(!horariosService.existsByNombreHorariosDeTrabajo(nombreHorarioT))
+		if(!horariosService.existsByNombreHorariosT(nombreHorarioT))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
 		HorariosDeTrabajo horariosDeTrabajo = horariosService.getByNombreHorariosDeTrabajo(nombreHorarioT).get();
 		return new ResponseEntity<HorariosDeTrabajo>(horariosDeTrabajo,HttpStatus.OK);
@@ -57,11 +57,11 @@ public class HorariosTrabajoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody HorarioTrabajoDto horarioTDto){
-		if(StringUtils.isBlank(horarioTDto.getNombre()))
+		if(StringUtils.isBlank(horarioTDto.getNombreHorariosT()))
 			return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
 		
 		
-		HorariosDeTrabajo horariosDeTrabajo =new HorariosDeTrabajo(horarioTDto.getNombre(),
+		HorariosDeTrabajo horariosDeTrabajo =new HorariosDeTrabajo(horarioTDto.getNombreHorariosT(),
 				horarioTDto.getDiaSemana(), horarioTDto.getTrabajarDesde(),horarioTDto.getTrabajarHasta(),
 				horarioTDto.getFechaInicio(), horarioTDto.getFechaFinalizacion(), horarioTDto.getPeriodoDia());
 				horariosService.save(horariosDeTrabajo);
@@ -78,7 +78,7 @@ public class HorariosTrabajoController {
 			//return new ResponseEntity(new Mensaje("El Nombre del estado  es Obligatorio"), HttpStatus.BAD_REQUEST);
 		
 		HorariosDeTrabajo horariosDeTrabajo = horariosService.getOne(id).get();
-		horariosDeTrabajo.setNombre(horarioTDto.getNombre());
+		horariosDeTrabajo.setNombreHorariosT(horarioTDto.getNombreHorariosT());
 		horariosDeTrabajo.setDiaSemana(horarioTDto.getDiaSemana());
 		horariosDeTrabajo.setTrabajarDesde(horarioTDto.getTrabajarDesde());
 		horariosDeTrabajo.setTrabajarHasta(horarioTDto.getTrabajarHasta());
