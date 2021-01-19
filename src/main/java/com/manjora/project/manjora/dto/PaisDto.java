@@ -6,23 +6,23 @@ public class PaisDto {
 	
 	
 	@NotBlank
-	private String nombre;
+	private String nombrePais;
 
 	public PaisDto() {
 
 	}
 
-	public PaisDto(String nombre) {
+	public PaisDto(String nombrePais) {
 		super();
-		this.nombre = nombre;
+		this.nombrePais = nombrePais;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePais() {
+		return nombrePais;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePais(String nombrePais) {
+		this.nombrePais = nombrePais;
 	}
 
 }

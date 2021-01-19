@@ -52,11 +52,11 @@ public class PaisController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody PaisDto paisDto){
-		if(StringUtils.isBlank(paisDto.getNombre()))
+		if(StringUtils.isBlank(paisDto.getNombrePais()))
 			return new ResponseEntity(new Mensaje("El Nombre del Pais es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(paisService.existsByNombrePais(paisDto.getNombre()))
+		if(paisService.existsByNombrePais(paisDto.getNombrePais()))
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		Pais pais = new Pais(paisDto.getNombre());
+		Pais pais = new Pais(paisDto.getNombrePais());
 		paisService.save(pais);
 		return new ResponseEntity(new Mensaje("Pais Creado"),HttpStatus.OK);
 	}
@@ -65,12 +65,12 @@ public class PaisController {
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody PaisDto paisDto){
 		if(!paisService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		if(paisService.existsByNombrePais(paisDto.getNombre()) && paisService.getByNombrePais(paisDto.getNombre()).get().getId() != id)
+		if(paisService.existsByNombrePais(paisDto.getNombrePais()) && paisService.getByNombrePais(paisDto.getNombrePais()).get().getId() != id)
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		if(StringUtils.isBlank(paisDto.getNombre()))
+		if(StringUtils.isBlank(paisDto.getNombrePais()))
 			return new ResponseEntity(new Mensaje("El Nombre del Pais es Obligatorio"), HttpStatus.BAD_REQUEST);
 		Pais pais = paisService.getOne(id).get();
-		pais.setNombre(paisDto.getNombre());
+		pais.setNombrePais(paisDto.getNombrePais());
 		paisService.save(pais);
 		return new ResponseEntity(new Mensaje("Pais Actualizado"),HttpStatus.OK);
 	}

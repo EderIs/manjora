@@ -13,15 +13,15 @@ public class Pais {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
+	private String nombrePais;
 	
 	public Pais() {
 
 	}
 
-	public Pais(String nombre) {
+	public Pais(String nombrePais) {
 		super();
-		this.nombre = nombre;
+		this.nombrePais = nombrePais;
 	}
 
 	public Long getId() {
@@ -32,12 +32,12 @@ public class Pais {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePais() {
+		return nombrePais;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePais(String nombrePais) {
+		this.nombrePais = nombrePais;
 	}
 	
 }

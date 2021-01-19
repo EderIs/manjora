@@ -45,7 +45,7 @@ public class TituloController {
 	
 	@GetMapping("/detailname/{nombreTitulo}")
 	public ResponseEntity<Titulo> getByNombreTitulo(@PathVariable("nombreTitulo") String nombreTitulo){
-		if(!tituloService.existsByNombreTitulo(nombreTitulo))
+		if(!tituloService.existsByTitulo(nombreTitulo))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
 		Titulo titulo = tituloService.getByNombreTitulo(nombreTitulo).get();
 		return new ResponseEntity<Titulo>(titulo,HttpStatus.OK);
@@ -55,7 +55,7 @@ public class TituloController {
 	public ResponseEntity<?> create(@RequestBody TituloDto tituloDto){
 		if(StringUtils.isBlank(tituloDto.getTitulo()))
 			return new ResponseEntity(new Mensaje("El Nombre del titulo es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(tituloService.existsByNombreTitulo(tituloDto.getTitulo()))
+		if(tituloService.existsByTitulo(tituloDto.getTitulo()))
 			return new ResponseEntity(new Mensaje("El estado ingresado ya existe"),HttpStatus.BAD_REQUEST);
 		Titulo titulo = new Titulo(tituloDto.getTitulo(), tituloDto.getAbreviatura());
 		tituloService.save(titulo);
@@ -66,7 +66,7 @@ public class TituloController {
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody TituloDto tituloDto){
 		if(!tituloService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe el estado"), HttpStatus.NOT_FOUND);
-		if(tituloService.existsByNombreTitulo(tituloDto.getTitulo()) && tituloService.getByNombreTitulo(tituloDto.getTitulo()).get().getId() != id)
+		if(tituloService.existsByTitulo(tituloDto.getTitulo()) && tituloService.getByNombreTitulo(tituloDto.getTitulo()).get().getId() != id)
 			return new ResponseEntity(new Mensaje("El Estado ingresado ya existe"),HttpStatus.BAD_REQUEST);
 		if(StringUtils.isBlank(tituloDto.getTitulo()))
 			return new ResponseEntity(new Mensaje("El Nombre del estado  es Obligatorio"), HttpStatus.BAD_REQUEST);
