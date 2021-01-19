@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +23,9 @@ public class Empleado {
 	private Long direccionTrabajo;
 	private Long idDepartamento;
 	private Long idPuesto;
+	private Long idPuesto;
 	*/
+	
 	private String tituloTrabajo;
 	/*
 	private Long idResponsable;
