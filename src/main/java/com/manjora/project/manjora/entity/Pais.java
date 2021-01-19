@@ -40,9 +40,4 @@ public class Pais {
 		this.nombre = nombre;
 	}
 	
-	
-	
-	
-	
-
 }

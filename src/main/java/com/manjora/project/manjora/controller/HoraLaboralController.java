@@ -61,7 +61,6 @@ public class HoraLaboralController {
 		return new ResponseEntity(new Mensaje("Hora laboral Creada"),HttpStatus.OK);
 	}
 	
-	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody HoraLaboralDto horaLaboralDto){
 		if(!horaLaboralService.existsById(id))
