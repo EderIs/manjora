@@ -19,17 +19,21 @@ public class Contacto {
 	private String nombre;
 	private boolean tipoContacto;
 	private byte fotografia;
-	private String compania;
-	private String ciudad;
+	
+	@OneToOne
+	@JoinColumn(name = "compania_id")
+	private Contacto contacto;
+	
+	private String calle;
 	private String calleSecundaria;
+	private String ciudad;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "estados_id")
 	private Estado estado;
 	
-	@OneToOne
-	@JoinColumn(name = "contacto_id")
-	private Contacto contacto;
+	
 	
 	private int codigoPostal;
 	private String nif;
@@ -44,7 +48,12 @@ public class Contacto {
 	private Titulo titulo;
 	private String notas;
 	private boolean rol;
-	private String comercial;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "comercial_id")
+	private Usuario usuario;
+	
 	private String referenciaInterna;
 	
 	
@@ -53,16 +62,18 @@ public class Contacto {
 	}
 
 
-	public Contacto(boolean tipoContacto, byte fotografia, String compania, String ciudad, String calleSecundaria,
-			Estado estado, int codigoPostal, String nif, String puestoTrabajo, String telefono, String movil,
-			String correoElectronico, String sitioWeb, Titulo titulo, String notas, boolean rol, String comercial,
-			String referenciaInterna) {
+	public Contacto(String nombre, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
+			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
+			boolean rol, Usuario usuario, String referenciaInterna) {
 		super();
+		this.nombre = nombre;
 		this.tipoContacto = tipoContacto;
 		this.fotografia = fotografia;
-		this.compania = compania;
-		this.ciudad = ciudad;
+		this.contacto = contacto;
+		this.calle = calle;
 		this.calleSecundaria = calleSecundaria;
+		this.ciudad = ciudad;
 		this.estado = estado;
 		this.codigoPostal = codigoPostal;
 		this.nif = nif;
@@ -74,7 +85,7 @@ public class Contacto {
 		this.titulo = titulo;
 		this.notas = notas;
 		this.rol = rol;
-		this.comercial = comercial;
+		this.usuario = usuario;
 		this.referenciaInterna = referenciaInterna;
 	}
 
@@ -86,6 +97,16 @@ public class Contacto {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 
@@ -109,23 +130,23 @@ public class Contacto {
 	}
 
 
-	public String getCompania() {
-		return compania;
+	public Contacto getContacto() {
+		return contacto;
 	}
 
 
-	public void setCompania(String compania) {
-		this.compania = compania;
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
 	}
 
 
-	public String getCiudad() {
-		return ciudad;
+	public String getCalle() {
+		return calle;
 	}
 
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setCalle(String calle) {
+		this.calle = calle;
 	}
 
 
@@ -136,6 +157,16 @@ public class Contacto {
 
 	public void setCalleSecundaria(String calleSecundaria) {
 		this.calleSecundaria = calleSecundaria;
+	}
+
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 
@@ -249,13 +280,13 @@ public class Contacto {
 	}
 
 
-	public String getComercial() {
-		return comercial;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 
-	public void setComercial(String comercial) {
-		this.comercial = comercial;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 
@@ -267,6 +298,8 @@ public class Contacto {
 	public void setReferenciaInterna(String referenciaInterna) {
 		this.referenciaInterna = referenciaInterna;
 	}
+
+	
 
 		
 }
