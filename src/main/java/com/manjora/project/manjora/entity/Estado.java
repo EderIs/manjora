@@ -1,5 +1,7 @@
 package com.manjora.project.manjora.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,16 +20,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "estados")
-public class Estado {
+public class Estado  {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombreEstado;
 	private int codigo;
-	
-	//@OneToOne(mappedBy = "estados")
-	//private Banco banco;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="pais_id",referencedColumnName = "id")
@@ -75,16 +75,4 @@ public class Estado {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-
-//	public Banco getBanco() {
-	//	return banco;
-	//}
-
-	//public void setBanco(Banco banco) {
-	//	this.banco = banco;
-	//}
-
-
-	
-
 }
