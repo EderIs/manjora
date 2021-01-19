@@ -2,25 +2,33 @@ package com.manjora.project.manjora.dto;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
+import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.entity.Estado;
 import com.manjora.project.manjora.entity.Titulo;
+import com.manjora.project.manjora.entity.Usuario;
 
 public class ContactoDto {
-	
-	
+
 	@NotBlank
+	private String nombre;
 	private boolean tipoContacto;
 	private byte fotografia;
-	private String compania;
-	private String ciudad;
+
+	@OneToOne
+	@JoinColumn(name = "compania_id")
+	private Contacto contacto;
+
+	private String calle;
 	private String calleSecundaria;
-	
+	private String ciudad;
+
 	@ManyToOne
 	@JoinColumn(name = "estados_id")
 	private Estado estado;
-	
+
 	private int codigoPostal;
 	private String nif;
 	private String puestoTrabajo;
@@ -28,29 +36,35 @@ public class ContactoDto {
 	private String movil;
 	private String correoElectronico;
 	private String sitioWeb;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "titulos_id")
 	private Titulo titulo;
 	private String notas;
 	private boolean rol;
-	private String comercial;
+
+	@ManyToOne
+	@JoinColumn(name = "comercial_id")
+	private Usuario usuario;
+
 	private String referenciaInterna;
 
 	public ContactoDto() {
-		
+
 	}
 
-	public ContactoDto(@NotBlank boolean tipoContacto, byte fotografia, String compania, String ciudad,
-			String calleSecundaria, Estado estado, int codigoPostal, String nif, String puestoTrabajo, String telefono,
-			String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas, boolean rol,
-			String comercial, String referenciaInterna) {
+	public ContactoDto(@NotBlank String nombre, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
+			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
+			boolean rol, Usuario usuario, String referenciaInterna) {
 		super();
+		this.nombre = nombre;
 		this.tipoContacto = tipoContacto;
 		this.fotografia = fotografia;
-		this.compania = compania;
-		this.ciudad = ciudad;
+		this.contacto = contacto;
+		this.calle = calle;
 		this.calleSecundaria = calleSecundaria;
+		this.ciudad = ciudad;
 		this.estado = estado;
 		this.codigoPostal = codigoPostal;
 		this.nif = nif;
@@ -62,8 +76,16 @@ public class ContactoDto {
 		this.titulo = titulo;
 		this.notas = notas;
 		this.rol = rol;
-		this.comercial = comercial;
+		this.usuario = usuario;
 		this.referenciaInterna = referenciaInterna;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public boolean isTipoContacto() {
@@ -82,20 +104,20 @@ public class ContactoDto {
 		this.fotografia = fotografia;
 	}
 
-	public String getCompania() {
-		return compania;
+	public Contacto getContacto() {
+		return contacto;
 	}
 
-	public void setCompania(String compania) {
-		this.compania = compania;
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
 	}
 
-	public String getCiudad() {
-		return ciudad;
+	public String getCalle() {
+		return calle;
 	}
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setCalle(String calle) {
+		this.calle = calle;
 	}
 
 	public String getCalleSecundaria() {
@@ -104,6 +126,14 @@ public class ContactoDto {
 
 	public void setCalleSecundaria(String calleSecundaria) {
 		this.calleSecundaria = calleSecundaria;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	public Estado getEstado() {
@@ -194,12 +224,12 @@ public class ContactoDto {
 		this.rol = rol;
 	}
 
-	public String getComercial() {
-		return comercial;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setComercial(String comercial) {
-		this.comercial = comercial;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getReferenciaInterna() {
@@ -209,7 +239,5 @@ public class ContactoDto {
 	public void setReferenciaInterna(String referenciaInterna) {
 		this.referenciaInterna = referenciaInterna;
 	}
-	
-	
 
 }
