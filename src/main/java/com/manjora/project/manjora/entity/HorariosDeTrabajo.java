@@ -1,9 +1,10 @@
 package com.manjora.project.manjora.entity;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,21 +14,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//Ultima version
+
 
 @Entity
-@Table(name="horarios_de_trabajo")
+@Table(name="horarios_trabajos")
 public class HorariosDeTrabajo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private String nombreHorariosT;
+	
 	private String diaSemana;
+	
 	private Time trabajarDesde;
+	
 	private Time trabajarHasta;
+	
 	private Date fechaInicio;
+	
 	private Date fechaFinalizacion;
+	
 	private String periodoDia;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
