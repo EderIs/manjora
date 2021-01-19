@@ -13,8 +13,6 @@ public class EstadoDto {
 	private int codigo;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "paises_id")
 	private Pais pais;
 	
 	public EstadoDto() {

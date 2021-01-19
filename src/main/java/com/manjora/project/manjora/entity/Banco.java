@@ -1,9 +1,15 @@
 package com.manjora.project.manjora.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +24,12 @@ public class Banco {
 	private String calle;
 	private String calleSecundaria;
 	private String ciudad;
-	//relacion con estado
-	// private Estado estado;
+
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="estados_id",referencedColumnName = "id")
+	private Estado estado;
+	
 	private int codigoPostal;
 	private String telefono;
 	private String correoElectronico;

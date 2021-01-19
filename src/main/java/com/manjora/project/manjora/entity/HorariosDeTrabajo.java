@@ -3,11 +3,17 @@ package com.manjora.project.manjora.entity;
 import java.sql.Time;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+//Ultima version
 
 @Entity
 @Table(name="horarios_de_trabajo")
@@ -23,8 +29,10 @@ public class HorariosDeTrabajo {
 	private Date fechaInicio;
 	private Date fechaFinalizacion;
 	private String periodoDia;
-	//Relacion aqui
-	// private HorasLaborales horasLaborales;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="horalaboral_id", referencedColumnName = "id")
+	private HoraLaboral horasLaborales;
 	
 	public HorariosDeTrabajo() {
 		
