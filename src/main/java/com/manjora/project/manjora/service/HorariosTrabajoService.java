@@ -42,7 +42,7 @@ public class HorariosTrabajoService {
 		return horarioTrabajoRepository.existsById(id);
 	}
 	
-	public boolean existsByNombreHorariosDeTrabajo(String nombreHorariosDeTrabajo) {
+	public boolean existsByNombreHorariosT(String nombreHorariosDeTrabajo) {
 		return horarioTrabajoRepository.existsByNombreHorariosT(nombreHorariosDeTrabajo);
 	}
 	

@@ -3,7 +3,7 @@ package com.manjora.project.manjora.dto;
 public class HoraLaboralDto {
 
 	
-	private String nombre;
+	private String nombreHoraL;
 	private Double promedioHoraDia;
 	
 	
@@ -12,20 +12,20 @@ public class HoraLaboralDto {
 	}
 
 
-	public HoraLaboralDto(String nombre, Double promedioHoraDia) {
+	public HoraLaboralDto(String nombreHoraL, Double promedioHoraDia) {
 		
-		this.nombre = nombre;
+		this.nombreHoraL = nombreHoraL;
 		this.promedioHoraDia = promedioHoraDia;
 	}
 
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreHoraL() {
+		return nombreHoraL;
 	}
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreHoraL(String nombreHoraL) {
+		this.nombreHoraL = nombreHoraL;
 	}
 
 
