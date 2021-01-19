@@ -58,11 +58,11 @@ public class EstadoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody EstadoDto estadoDto){
-		if(StringUtils.isBlank(estadoDto.getNombre()))
+		if(StringUtils.isBlank(estadoDto.getNombreEstado()))
 			return new ResponseEntity(new Mensaje("El Nombre del Estado es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(estadoService.existsByNombreEstado(estadoDto.getNombre()))
+		if(estadoService.existsByNombreEstado(estadoDto.getNombreEstado()))
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		Estado estado = new Estado(estadoDto.getNombre(), estadoDto.getCodigo(),estadoDto.getPais());
+		Estado estado = new Estado(estadoDto.getNombreEstado(), estadoDto.getCodigo(),estadoDto.getPais());
 		estadoService.save(estado);
 		return new ResponseEntity(new Mensaje("Estado Creado"),HttpStatus.OK);
 	}
@@ -71,12 +71,12 @@ public class EstadoController {
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody EstadoDto estadoDto){
 		if(!estadoService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		if(estadoService.existsByNombreEstado(estadoDto.getNombre()) && estadoService.getByNombreEstado(estadoDto.getNombre()).get().getId() != id)
+		if(estadoService.existsByNombreEstado(estadoDto.getNombreEstado()) && estadoService.getByNombreEstado(estadoDto.getNombreEstado()).get().getId() != id)
 			return new ResponseEntity(new Mensaje("El Nombre ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		if(StringUtils.isBlank(estadoDto.getNombre()))
+		if(StringUtils.isBlank(estadoDto.getNombreEstado()))
 			return new ResponseEntity(new Mensaje("El Nombre del Estado es Obligatorio"), HttpStatus.BAD_REQUEST);
 		Estado estado = estadoService.getOne(id).get();
-		estado.setNombre(estadoDto.getNombre());
+		estado.setNombreEstado(estadoDto.getNombreEstado());
 		estado.setCodigo(estadoDto.getCodigo());
 		estado.setPais(estadoDto.getPais());
 		estadoService.save(estado);
