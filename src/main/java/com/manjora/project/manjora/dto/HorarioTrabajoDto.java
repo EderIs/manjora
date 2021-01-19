@@ -1,7 +1,11 @@
 package com.manjora.project.manjora.dto;
 
+
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
+
+import com.manjora.project.manjora.entity.HoraLaboral;
+
 
 public class HorarioTrabajoDto {
 
@@ -14,8 +18,7 @@ public class HorarioTrabajoDto {
 	private Date fechaInicio;
 	private Date fechaFinalizacion;
 	private String periodoDia;
-	//Relacion con Horas laborales
-	// private HorasLaborales horasLaborales;
+	private HoraLaboral horasLaborales;
 	public HorarioTrabajoDto() {
 	}
 	public HorarioTrabajoDto(String nombreHorariosT, String diaSemana, Time trabajarDesde, Time trabajarHasta, Date fechaInicio,
@@ -70,5 +73,11 @@ public class HorarioTrabajoDto {
 	}
 	public void setPeriodoDia(String periodoDia) {
 		this.periodoDia = periodoDia;
+	}
+	public HoraLaboral getHorasLaborales() {
+		return horasLaborales;
+	}
+	public void setHorasLaborales(HoraLaboral horasLaborales) {
+		this.horasLaborales = horasLaborales;
 	}
 }
