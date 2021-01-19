@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+//dhjd
 
 @Entity
 @Table(name = "empleados")
@@ -18,21 +23,32 @@ public class Empleado {
 	private Long id;
 	private byte fotografia;
 	private String nombreEmpleado;
-	/*
+	
 	private Long idCategoria;
 	private Long direccionTrabajo;
-	private Long idDepartamento;
+	
 	private Long idPuesto;
-	private Long idPuesto;
-	*/
 	
 	private String tituloTrabajo;
+	
+	@OneToOne
+    @JoinColumn(name="responsable_id", referencedColumnName = "id")
+	private Empleado idResponsable;
+	
+	@ManyToOne
+    @JoinColumn(name="monitor_id", referencedColumnName = "id")
+	private Empleado idMonitor;
+	
+	@ManyToOne
+    @JoinColumn(name="horasLaborales_id", referencedColumnName = "id")
+	private HoraLaboral horasLaborales;
+	
 	/*
-	private Long idResponsable;
-	private Long idMonitor;
-	private Long horasLaborales;
-	private Long idCuentaBancaria;
+	@ManyToOne
+    @JoinColumn(name="cuentaBancaria_id", referencedColumnName = "id")
+	private CuentaBancaria idCuentaBancaria;
 	*/
+	
 	private String direccionPrivada;
 	private String contactoEmergencia;
 	private String telefonoEmergencia;
@@ -45,7 +61,12 @@ public class Empleado {
 	private String nivelCertificado;
 	private String escuela;
 	private String notaAdicional;
-	//private Long idUsuario;
+	
+	@ManyToOne
+    @JoinColumn(name="usuario_id", referencedColumnName = "id")
+	private Usuario idUsuario;
+	
+	
 	private String nota;
 	private boolean estado;
 	public Empleado() {
@@ -58,7 +79,6 @@ public class Empleado {
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
 			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional,/* Long idUsuario,*/
 			String nota, boolean estado) {
-		super();
 		this.fotografia = fotografia;
 		this.nombreEmpleado = nombreEmpleado;
 		/*
