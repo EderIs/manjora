@@ -1,5 +1,7 @@
 package com.manjora.project.manjora.dto;
 
+import com.manjora.project.manjora.entity.Pais;
+
 public class BancoDto {
 
 	private String nombre;
@@ -7,8 +9,7 @@ public class BancoDto {
 	private String calle;
 	private String calleSecundaria;
 	private String ciudad;
-	//relacion con estado
-	// private Estado estado;
+	private Pais pais;
 	private int codigoPostal;
 	private String telefono;
 	private String correoElectronico;
@@ -17,7 +18,7 @@ public class BancoDto {
 	public BancoDto() {}
 
 	public BancoDto(String nombre, String codigoIdenBancaria, String calle, String calleSecundaria, String ciudad,
-			int codigoPostal, String telefono, String correoElectronico, Boolean activo) {
+			int codigoPostal, String telefono, String correoElectronico, Boolean activo,Pais pais) {
 		
 		this.nombre = nombre;
 		this.codigoIdenBancaria = codigoIdenBancaria;
@@ -28,6 +29,7 @@ public class BancoDto {
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
 		this.activo = activo;
+		this.pais=pais;
 	}
 
 	public String getNombre() {
@@ -101,5 +103,12 @@ public class BancoDto {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-	
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
 }

@@ -63,7 +63,7 @@ public class BancoController {
 			return new ResponseEntity(new Mensaje("El banco ingresado ya existe"),HttpStatus.BAD_REQUEST);
 		Banco banco = new Banco(bancoDto.getNombre(),bancoDto.getCodigoIdenBancaria(), bancoDto.getCalle(), 
 				bancoDto.getCalleSecundaria(), bancoDto.getCiudad(), bancoDto.getCodigoPostal(),
-				bancoDto.getTelefono(), bancoDto.getCorreoElectronico(), bancoDto.getActivo());
+				bancoDto.getTelefono(), bancoDto.getCorreoElectronico(), bancoDto.getActivo(),bancoDto.getPais());
 		bancoService.save(banco);
 		return new ResponseEntity(new Mensaje("Banco Creado"),HttpStatus.OK);
 	}
@@ -87,7 +87,7 @@ public class BancoController {
 		banco.setTelefono(bancoDto.getTelefono());
 		banco.setCorreoElectronico(bancoDto.getCorreoElectronico());
 		banco.setActivo(bancoDto.getActivo());
-		
+		banco.setPais(bancoDto.getPais());
 		bancoService.save(banco);
 		return new ResponseEntity(new Mensaje("Banco Actualizado"),HttpStatus.OK);
 	}

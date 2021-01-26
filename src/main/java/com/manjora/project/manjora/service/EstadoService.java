@@ -2,6 +2,8 @@ package com.manjora.project.manjora.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ public class EstadoService {
 
 	@Autowired
 	EstadoRepository estadoRepository;
-
+@Autowired
+private EntityManager entityManager;
+	
 	public List<Estado> list() {
 		return estadoRepository.findAll();
 	}
@@ -28,7 +32,13 @@ public class EstadoService {
 	}
 
 	public void save(Estado estado) {
-		estadoRepository.save(estado);
+		//if(estado.getId() > 0) {
+			
+			//entityManager.merge(estado);
+		//}else {
+		//	entityManager.persist(estado);
+		//}
+		 estadoRepository.save(estado);
 	}
 
 	public void delete(Long id) {
