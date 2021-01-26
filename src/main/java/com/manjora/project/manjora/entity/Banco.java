@@ -26,9 +26,9 @@ public class Banco {
 	private String ciudad;
 
 
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="estados_id",referencedColumnName = "id")
-	private Estado estado;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="pais_id",referencedColumnName = "id")
+	private Pais pais;
 	
 	private int codigoPostal;
 	private String telefono;
@@ -41,7 +41,7 @@ public class Banco {
 
 
 	public Banco(String nombre, String codigoIdenBancaria, String calle, String calleSecundaria, String ciudad,
-			int codigoPostal, String telefono, String correoElectronico, Boolean activo) {
+			int codigoPostal, String telefono, String correoElectronico, Boolean activo,Pais pais) {
 		
 		this.nombre = nombre;
 		this.codigoIdenBancaria = codigoIdenBancaria;
@@ -52,6 +52,7 @@ public class Banco {
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
 		this.activo = activo;
+		this.pais = pais;
 	}
 
 
@@ -152,6 +153,16 @@ public class Banco {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
+	}
+
+
+	public Pais getPais() {
+		return pais;
+	}
+
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 	
 }

@@ -29,7 +29,7 @@ public class Estado  {
 	private String nombreEstado;
 	private int codigo;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
 	@JoinColumn(name="pais_id",referencedColumnName = "id")
 	private Pais pais;
 	
@@ -57,7 +57,7 @@ public class Estado  {
 	}
 
 	public void setNombreEstado(String nombre) {
-		this.nombreEstado = nombreEstado;
+		this.nombreEstado = nombre;
 	}
 
 	public int getCodigo() {
