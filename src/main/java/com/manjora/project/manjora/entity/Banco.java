@@ -26,7 +26,7 @@ public class Banco {
 	private String ciudad;
 
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="pais_id",referencedColumnName = "id")
 	private Pais pais;
 	
@@ -116,6 +116,16 @@ public class Banco {
 	}
 
 
+	public Pais getPais() {
+		return pais;
+	}
+
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+
 	public int getCodigoPostal() {
 		return codigoPostal;
 	}
@@ -154,15 +164,4 @@ public class Banco {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-
-
-	public Pais getPais() {
-		return pais;
-	}
-
-
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
-	
 }

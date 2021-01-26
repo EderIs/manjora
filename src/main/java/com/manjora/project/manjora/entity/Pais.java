@@ -25,7 +25,7 @@ public class Pais {
 	}
 
 	public Pais(String nombrePais) {
-		super();
+	
 		this.nombrePais = nombrePais;
 	}
 
