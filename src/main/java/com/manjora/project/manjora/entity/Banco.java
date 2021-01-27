@@ -25,7 +25,6 @@ public class Banco {
 	private String calleSecundaria;
 	private String ciudad;
 
-
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="pais_id",referencedColumnName = "id")
 	private Pais pais;

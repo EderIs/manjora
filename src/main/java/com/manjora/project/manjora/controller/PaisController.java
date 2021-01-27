@@ -77,10 +77,15 @@ public class PaisController {
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete (@PathVariable("id") Long id){
-		if(!paisService.existsById(id))
-			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		paisService.delete(id);
-		return new ResponseEntity(new Mensaje("Pais Eliminado"), HttpStatus.OK);
+		try {
+			if(!paisService.existsById(id))
+				return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
+			paisService.delete(id);
+			return new ResponseEntity(new Mensaje("Pais Eliminado"), HttpStatus.OK);
+		}catch(Exception ex) {
+			
+			return new ResponseEntity(new Mensaje("Error : "+ex.getCause()), HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }
