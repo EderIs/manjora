@@ -39,6 +39,17 @@ public class BancoController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 	
+	@GetMapping("/list/{nombre}")
+	public ResponseEntity<List<Banco>>ListAllByNombre(@PathVariable("nombre") String nombre ){
+		try {
+			List<Banco> list = bancoService.findAllByNombre(nombre);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
 	@GetMapping("/detail/{id}")
 	public ResponseEntity<Banco> getById(@PathVariable("id") Long id){
 		if(!bancoService.existsById(id))
@@ -57,15 +68,19 @@ public class BancoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody BancoDto bancoDto){
-		if(StringUtils.isBlank(bancoDto.getNombre()))
-			return new ResponseEntity(new Mensaje("El Nombre del banco es Obligatorio"), HttpStatus.BAD_REQUEST);
-		if(bancoService.existsByNombre(bancoDto.getNombre()))
-			return new ResponseEntity(new Mensaje("El banco ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		Banco banco = new Banco(bancoDto.getNombre(),bancoDto.getCodigoIdenBancaria(), bancoDto.getCalle(), 
-				bancoDto.getCalleSecundaria(), bancoDto.getCiudad(), bancoDto.getCodigoPostal(),
-				bancoDto.getTelefono(), bancoDto.getCorreoElectronico(), bancoDto.getActivo(),bancoDto.getPais());
-		bancoService.save(banco);
-		return new ResponseEntity(new Mensaje("Banco Creado"),HttpStatus.OK);
+		try {
+			if(StringUtils.isBlank(bancoDto.getNombre()))
+				return new ResponseEntity(new Mensaje("El Nombre del banco es Obligatorio"), HttpStatus.BAD_REQUEST);
+			if(bancoService.existsByNombre(bancoDto.getNombre()))
+				return new ResponseEntity(new Mensaje("El banco ingresado ya existe"),HttpStatus.BAD_REQUEST);
+			Banco banco = new Banco(bancoDto.getNombre(),bancoDto.getCodigoIdenBancaria(), bancoDto.getCalle(), 
+					bancoDto.getCalleSecundaria(), bancoDto.getCiudad(), bancoDto.getCodigoPostal(),
+					bancoDto.getTelefono(), bancoDto.getCorreoElectronico(), bancoDto.getActivo(),bancoDto.getPais());
+			bancoService.save(banco);
+			return new ResponseEntity(new Mensaje("Banco Creado"),HttpStatus.OK);	
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error:"+ex.getCause()),HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping("/update/{id}")

@@ -47,6 +47,9 @@ public class BancoService {
 		return bancoRepository.existsByNombre(nombre);
 	}
 	
-	
+	public List<Banco> findAllByNombre(String nombre) {
+		
+		return bancoRepository.findAllByNombre(nombre);
+	}
 	
 }
