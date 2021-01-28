@@ -30,7 +30,7 @@ public class Contacto {
 	private String ciudad;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "estados_id")
 	private Estado estado;
 	

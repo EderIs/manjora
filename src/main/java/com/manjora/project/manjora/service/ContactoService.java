@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.repository.ContactoRepository;
 
@@ -41,6 +43,10 @@ public class ContactoService {
 
 	public boolean existsByNombreContacto(String nombreContacto) {
 		return contactoRepository.existsByNombreContacto(nombreContacto);
+	}
+	public List<Contacto> findAllByNombre(String nombre) {
+		
+		return contactoRepository.findAllByNombre(nombre);
 	}
 
 }

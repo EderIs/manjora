@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.ContactoDto;
 import com.manjora.project.manjora.dto.Mensaje;
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.service.ContactoService;
 
@@ -32,6 +33,17 @@ public class ContactoController {
 	public ResponseEntity<List<Contacto>> List() {
 		List<Contacto> list = contactoService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/{nombre}")
+	public ResponseEntity<List<Contacto>>ListAllByNombre(@PathVariable("nombre") String nombre ){
+		try {
+			List<Contacto> list = contactoService.findAllByNombre(nombre);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 
 	@GetMapping("/detail/{id}")
