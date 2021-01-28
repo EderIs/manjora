@@ -25,9 +25,14 @@ public class Empleado {
 	private String nombreEmpleado;
 	
 	private Long idCategoria;
-	private Long direccionTrabajo;
 	
-	private Long idPuesto;
+	@OneToOne
+    @JoinColumn(name="direccion_id", referencedColumnName = "id")
+	private Contacto direccionTrabajo;
+	
+	@OneToOne
+    @JoinColumn(name="puesto_id", referencedColumnName = "id")
+	private Puesto idPuesto;
 	
 	private String tituloTrabajo;
 	

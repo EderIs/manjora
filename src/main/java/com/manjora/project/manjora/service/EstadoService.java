@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Estado;
 import com.manjora.project.manjora.repository.EstadoRepository;
 
@@ -32,12 +34,6 @@ private EntityManager entityManager;
 	}
 
 	public void save(Estado estado) {
-		//if(estado.getId() > 0) {
-			
-			//entityManager.merge(estado);
-		//}else {
-		//	entityManager.persist(estado);
-		//}
 		 estadoRepository.save(estado);
 	}
 
@@ -51,6 +47,11 @@ private EntityManager entityManager;
 
 	public boolean existsByNombreEstado(String nombreEstado) {
 		return estadoRepository.existsByNombreEstado(nombreEstado);
+	}
+	
+	public List<Estado> findAllByNombre(String nombreEstado) {
+		
+		return estadoRepository.findAllByNombre(nombreEstado);
 	}
 
 }

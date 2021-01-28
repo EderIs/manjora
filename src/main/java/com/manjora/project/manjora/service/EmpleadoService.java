@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.repository.EmpleadoRepository;
 
@@ -20,6 +21,11 @@ public class EmpleadoService {
 	
 	public List<Empleado> list(){
 		return empleadoRepository.findAll();
+	}
+	
+	public List<Empleado> findAllByNombre(String nombre) {
+		
+		return empleadoRepository.findAllByNombre(nombre);
 	}
 	
 	public Optional<Empleado> getOne(Long id){

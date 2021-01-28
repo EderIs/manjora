@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.EmpleadoDto;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.PuestoDto;
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Departamento;
 import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.Puesto;
@@ -36,6 +37,17 @@ public class EmpleadoController {
 	public ResponseEntity<List<Empleado>> List(){
 		List<Empleado> list = empleadoService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/{nombre}")
+	public ResponseEntity<List<Empleado>>ListAllByNombre(@PathVariable("nombre") String nombre ){
+		try {
+			List<Empleado> list = empleadoService.findAllByNombre(nombre);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	@GetMapping("/detail/{id}")

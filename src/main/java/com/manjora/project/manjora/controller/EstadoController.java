@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.EstadoDto;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.UsuarioDto;
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Estado;
 import com.manjora.project.manjora.entity.Usuario;
 import com.manjora.project.manjora.service.EstadoService;
@@ -40,6 +41,17 @@ public class EstadoController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 	
+	@GetMapping("/list/{nombreEstado}")
+	public ResponseEntity<List<Estado>>ListAllByNombre(@PathVariable("nombreEstado") String nombreEstado ){
+		try {
+			List<Estado> list = estadoService.findAllByNombre(nombreEstado);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
 	@GetMapping("/detail/{id}")
 	public ResponseEntity<Estado> getById(@PathVariable("id") Long id){
 		if(!estadoService.existsById(id))
@@ -48,7 +60,7 @@ public class EstadoController {
 		return new ResponseEntity<Estado>(estado,HttpStatus.OK);
 	}
 	
-	@GetMapping("/detailname/{nombreUsuario}")
+	@GetMapping("/detailname/{nombreEstado}")
 	public ResponseEntity<Estado> getByNombreEstado(@PathVariable("nombreEstado") String nombreEstado){
 		if(!estadoService.existsByNombreEstado(nombreEstado))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
