@@ -57,7 +57,7 @@ public class PuestoController {
 			return new ResponseEntity(new Mensaje("El Nombre del Puesto es Obligatorio"), HttpStatus.BAD_REQUEST);
 		if(puestoService.existsByNombrePuesto(puestoDto.getNombrePuesto()))
 			return new ResponseEntity(new Mensaje("El Puesto ingresado ya existe"),HttpStatus.BAD_REQUEST);
-		Puesto departamento = new Puesto(puestoDto.getNombrePuesto(),puestoDto.getDescripcionTrabajo());
+		Puesto departamento = new Puesto(puestoDto.getNombrePuesto(),puestoDto.getDepartamento(),puestoDto.getDescripcionTrabajo());
 		puestoService.save(departamento);
 		return new ResponseEntity(new Mensaje("Puesto Creado"),HttpStatus.OK);
 	}

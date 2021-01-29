@@ -1,5 +1,6 @@
 package com.manjora.project.manjora.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,46 +18,65 @@ public class Puesto {
 	private Long id;
 	private String nombrePuesto;
 	
-	@ManyToOne
-    @JoinColumn(name="departamento_id", referencedColumnName = "id")
-	private Departamento idDepartamento;
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "departamento_id")
+	private Departamento departamento;
 	
 	private String descripcionTrabajo;
+	
+	
 	public Puesto() {
 
 	}
-	public Puesto(String nombrePuesto, /*Long idDepartamento,*/ String descripcionTrabajo) {
+
+
+	public Puesto(String nombrePuesto, Departamento departamento, String descripcionTrabajo) {
 		super();
 		this.nombrePuesto = nombrePuesto;
-		//this.idDepartamento = idDepartamento;
-		descripcionTrabajo = descripcionTrabajo;
+		this.departamento = departamento;
+		this.descripcionTrabajo = descripcionTrabajo;
 	}
+
+
 	public Long getId() {
 		return id;
 	}
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 	public String getNombrePuesto() {
 		return nombrePuesto;
 	}
+
+
 	public void setNombrePuesto(String nombrePuesto) {
 		this.nombrePuesto = nombrePuesto;
 	}
-	/*
-	public Long getIdDepartamento() {
-		return idDepartamento;
+
+
+	public Departamento getDepartamento() {
+		return departamento;
 	}
-	public void setIdDepartamento(Long idDepartamento) {
-		this.idDepartamento = idDepartamento;
+
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
-	*/	
+
+
 	public String getDescripcionTrabajo() {
 		return descripcionTrabajo;
 	}
+
+
 	public void setDescripcionTrabajo(String descripcionTrabajo) {
-		descripcionTrabajo = descripcionTrabajo;
+		this.descripcionTrabajo = descripcionTrabajo;
 	}
-	
+
 	
 }
