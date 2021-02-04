@@ -92,8 +92,6 @@ public class EstadoController {
 		estadoService.save(estado);
 		return new ResponseEntity(new Mensaje("Estado Actualizado"),HttpStatus.OK);
 	}
-	
-	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete (@PathVariable("id") Long id){
 		if(!estadoService.existsById(id))
