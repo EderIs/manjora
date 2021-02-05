@@ -22,6 +22,7 @@ import com.manjora.project.manjora.dto.PuestoDto;
 import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Departamento;
 import com.manjora.project.manjora.entity.Empleado;
+import com.manjora.project.manjora.entity.HorariosDeTrabajo;
 import com.manjora.project.manjora.entity.Puesto;
 import com.manjora.project.manjora.service.EmpleadoService;
 
@@ -39,10 +40,10 @@ public class EmpleadoController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/list/{nombre}")
-	public ResponseEntity<List<Empleado>>ListAllByNombre(@PathVariable("nombre") String nombre ){
+	@GetMapping("/list/{nombreEmpleado}")
+	public ResponseEntity<List<Empleado>>ListAllByNombre(@PathVariable("nombreEmpleado") String nombreEmpleado ){
 		try {
-			List<Empleado> list = empleadoService.findAllByNombre(nombre);
+			List<Empleado> list = empleadoService.findAllByNombre(nombreEmpleado);
 			return new ResponseEntity(list, HttpStatus.OK);
 		}catch(Exception ex) {
 			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
@@ -75,7 +76,13 @@ public class EmpleadoController {
 		Empleado empleado = new Empleado(
 				empleadoDto.getFotografia(),
 				empleadoDto.getNombreEmpleado(),
+				empleadoDto.getIdCategoria(),
+				empleadoDto.getDireccionTrabajo(),
+				empleadoDto.getIdPuesto(),
 				empleadoDto.getTituloTrabajo(),
+				empleadoDto.getIdResponsable(),
+				empleadoDto.getIdMonitor(),
+				empleadoDto.getHorasLaborales(),
 				empleadoDto.getDireccionPrivada(),
 				empleadoDto.getContactoEmergencia(),
 				empleadoDto.getTelefonoEmergencia(),
@@ -88,11 +95,12 @@ public class EmpleadoController {
 				empleadoDto.getNivelCertificado(),
 				empleadoDto.getEscuela(),
 				empleadoDto.getNotaAdicional(),
+				empleadoDto.getIdUsuario(),
 				empleadoDto.getNota(),
 				empleadoDto.isEstado()
 				);
 		empleadoService.save(empleado);
-		return new ResponseEntity(new Mensaje("Puesto Creado"),HttpStatus.OK);
+		return new ResponseEntity(new Mensaje("Empleado Creado"),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{id}")
@@ -107,7 +115,13 @@ public class EmpleadoController {
 		Empleado empleado = empleadoService.getOne(id).get();
 		empleado.setFotografia(empleadoDto.getFotografia());
 		empleado.setNombreEmpleado(empleadoDto.getNombreEmpleado());
+		empleado.setIdCategoria(empleadoDto.getIdCategoria());
+		empleado.setDireccionTrabajo(empleadoDto.getDireccionTrabajo());
+		empleado.setIdPuesto(empleadoDto.getIdPuesto());
 		empleado.setTituloTrabajo(empleadoDto.getTituloTrabajo());
+		empleado.setIdResponsable(empleadoDto.getIdResponsable());
+		empleado.setIdMonitor(empleadoDto.getIdMonitor());
+		empleado.setHorasLaborales(empleadoDto.getHorasLaborales());
 		empleado.setDireccionPrivada(empleadoDto.getDireccionPrivada());
 		empleado.setContactoEmergencia(empleadoDto.getContactoEmergencia());
 		empleado.setTelefonoEmergencia(empleadoDto.getTelefonoEmergencia());
@@ -120,9 +134,9 @@ public class EmpleadoController {
 		empleado.setNivelCertificado(empleadoDto.getNivelCertificado());
 		empleado.setEscuela(empleadoDto.getEscuela());
 		empleado.setNotaAdicional(empleadoDto.getNotaAdicional());
+		empleado.setIdUsuario(empleadoDto.getIdUsuario());
 		empleado.setNota(empleadoDto.getNota());
 		empleado.setEstado(empleadoDto.isEstado());
-		
 		empleadoService.save(empleado);
 		return new ResponseEntity(new Mensaje("Empleado Actualizado"),HttpStatus.OK);
 	}

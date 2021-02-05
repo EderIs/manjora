@@ -22,7 +22,7 @@ public class HorarioTrabajoDto {
 	public HorarioTrabajoDto() {
 	}
 	public HorarioTrabajoDto(String nombreHorariosT, String diaSemana, Time trabajarDesde, Time trabajarHasta, Date fechaInicio,
-			Date fechaFinalizacion, String periodoDia) {
+			Date fechaFinalizacion, String periodoDia, HoraLaboral horasLaborales) {
 		
 		this.nombreHorariosT = nombreHorariosT;
 		this.diaSemana = diaSemana;
@@ -31,6 +31,7 @@ public class HorarioTrabajoDto {
 		this.fechaInicio = fechaInicio;
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.periodoDia = periodoDia;
+		this.horasLaborales = horasLaborales;
 	}
 	public String getNombreHorariosT() {
 		return nombreHorariosT;

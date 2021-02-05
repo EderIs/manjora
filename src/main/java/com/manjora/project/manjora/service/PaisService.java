@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.manjora.project.manjora.entity.Estado;
 import com.manjora.project.manjora.entity.Pais;
 import com.manjora.project.manjora.repository.PaisRepository;
 
@@ -44,6 +45,11 @@ public class PaisService {
 	
 	public boolean existsByNombrePais(String nombrePais) {
 		return paisRepository.existsByNombrePais(nombrePais);
+	}
+	
+	public List<Pais> findAllByNombre(String nombrePais) {
+		
+		return paisRepository.findAllByNombre(nombrePais);
 	}
 
 }

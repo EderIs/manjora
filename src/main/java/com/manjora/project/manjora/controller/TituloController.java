@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.TituloDto;
+import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.Titulo;
 import com.manjora.project.manjora.service.TituloService;
 
@@ -33,6 +34,17 @@ public class TituloController {
 	public ResponseEntity<List<Titulo>> List(){
 		List<Titulo> list = tituloService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/{titulo}")
+	public ResponseEntity<List<Titulo>>ListAllByNombre(@PathVariable("titulo") String titulo ){
+		try {
+			List<Titulo> list = tituloService.findAllByTitulo(titulo);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	@GetMapping("/detail/{id}")
@@ -72,7 +84,7 @@ public class TituloController {
 			return new ResponseEntity(new Mensaje("El Nombre del estado  es Obligatorio"), HttpStatus.BAD_REQUEST);
 		Titulo titulo = tituloService.getOne(id).get();
 		titulo.setTitulo(tituloDto.getTitulo());
-		titulo.setAbreviatura(titulo.getAbreviatura());
+		titulo.setAbreviatura(tituloDto.getAbreviatura());
 		tituloService.save(titulo);
 		return new ResponseEntity(new Mensaje("Estado Actualizado"),HttpStatus.OK);
 	}

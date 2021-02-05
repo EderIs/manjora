@@ -70,6 +70,7 @@ public class HoraLaboralController {
 			return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
 		
 		HoraLaboral horaLaboral =new HoraLaboral(horaLaboralDto.getNombreHoraL(),horaLaboralDto.getPromedioHoraDia());
+		horaLaboralService.save(horaLaboral);
 		return new ResponseEntity(new Mensaje("Hora laboral Creada"),HttpStatus.OK);
 	}
 	

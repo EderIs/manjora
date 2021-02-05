@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.PaisDto;
+import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.Pais;
 import com.manjora.project.manjora.service.PaisService;
 
@@ -32,6 +33,17 @@ public class PaisController {
 	public ResponseEntity<List<Pais>> List(){
 		List<Pais> list = paisService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/{nombrePais}")
+	public ResponseEntity<List<Pais>>ListAllByNombre(@PathVariable("nombrePais") String nombrePais ){
+		try {
+			List<Pais> list = paisService.findAllByNombre(nombrePais);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	@GetMapping("/detail/{id}")

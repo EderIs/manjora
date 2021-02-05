@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.HorarioTrabajoDto;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.TituloDto;
+import com.manjora.project.manjora.entity.HoraLaboral;
 import com.manjora.project.manjora.entity.HorariosDeTrabajo;
 import com.manjora.project.manjora.entity.Titulo;
 import com.manjora.project.manjora.service.HorariosTrabajoService;
@@ -39,6 +40,17 @@ public class HorariosTrabajoController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 	
+	@GetMapping("/list/{nombreHorarioT}")
+	public ResponseEntity<List<HorariosDeTrabajo>>ListAllByNombre(@PathVariable("nombreHorarioT") String nombreHorarioT ){
+		try {
+			List<HorariosDeTrabajo> list = horariosService.findAllByNombre(nombreHorarioT);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
 	@GetMapping("/detail/{id}")
 	public ResponseEntity<HorariosDeTrabajo> getById(@PathVariable("id") Long id){
 		if(!horariosService.existsById(id))
@@ -47,11 +59,11 @@ public class HorariosTrabajoController {
 		return new ResponseEntity<HorariosDeTrabajo>(horariosDeTrabajo,HttpStatus.OK);
 	}
 	
-	@GetMapping("/detailname/{nombreHorarioT}")
-	public ResponseEntity<HorariosDeTrabajo> getBynombreHorarioT(@PathVariable("nombreHorarioT") String nombreHorarioT){
-		if(!horariosService.existsByNombreHorariosT(nombreHorarioT))
+	@GetMapping("/detailname/{nombreHorariosT}")
+	public ResponseEntity<HorariosDeTrabajo> getBynombreHorarioT(@PathVariable("nombreHorariosT") String nombreHorariosT){
+		if(!horariosService.existsByNombreHorariosT(nombreHorariosT))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		HorariosDeTrabajo horariosDeTrabajo = horariosService.getByNombreHorariosDeTrabajo(nombreHorarioT).get();
+		HorariosDeTrabajo horariosDeTrabajo = horariosService.getByNombreHorariosDeTrabajo(nombreHorariosT).get();
 		return new ResponseEntity<HorariosDeTrabajo>(horariosDeTrabajo,HttpStatus.OK);
 	}
 	
@@ -62,8 +74,9 @@ public class HorariosTrabajoController {
 		
 		
 		HorariosDeTrabajo horariosDeTrabajo =new HorariosDeTrabajo(horarioTDto.getNombreHorariosT(),
-				horarioTDto.getDiaSemana(), horarioTDto.getTrabajarDesde(),horarioTDto.getTrabajarHasta(),
-				horarioTDto.getFechaInicio(), horarioTDto.getFechaFinalizacion(), horarioTDto.getPeriodoDia());
+				horarioTDto.getDiaSemana(),horarioTDto.getTrabajarDesde(),horarioTDto.getTrabajarHasta(),
+				horarioTDto.getFechaInicio(),horarioTDto.getFechaFinalizacion(),horarioTDto.getPeriodoDia(),
+				horarioTDto.getHorasLaborales());
 				horariosService.save(horariosDeTrabajo);
 		return new ResponseEntity(new Mensaje("Horario de trabajo Creado"),HttpStatus.OK);
 	}
@@ -85,6 +98,7 @@ public class HorariosTrabajoController {
 		horariosDeTrabajo.setFechaInicio(horarioTDto.getFechaInicio());
 		horariosDeTrabajo.setFechaFinalizacion(horarioTDto.getFechaFinalizacion());
 		horariosDeTrabajo.setPeriodoDia(horarioTDto.getPeriodoDia());
+		horariosDeTrabajo.setHorasLaborales(horarioTDto.getHorasLaborales());
 		
 		horariosService.save(horariosDeTrabajo);
 		return new ResponseEntity(new Mensaje("Estado Actualizado"),HttpStatus.OK);

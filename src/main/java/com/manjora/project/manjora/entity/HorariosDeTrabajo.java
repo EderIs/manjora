@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class HorariosDeTrabajo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nombreHorariosT;
@@ -38,7 +38,7 @@ public class HorariosDeTrabajo {
 	
 	private String periodoDia;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="horalaboral_id", referencedColumnName = "id")
 	private HoraLaboral horasLaborales;
 	
@@ -47,7 +47,7 @@ public class HorariosDeTrabajo {
 	}
 	
 	public HorariosDeTrabajo( String nombreHorariosT, String diaSemana, Time trabajarDesde, Time trabajarHasta,
-			Date fechaInicio, Date fechaFinalizacion, String periodoDia) {
+			Date fechaInicio, Date fechaFinalizacion, String periodoDia, HoraLaboral horasLaborales) {
 		
 		this.nombreHorariosT = nombreHorariosT;
 		this.diaSemana = diaSemana;
@@ -56,6 +56,7 @@ public class HorariosDeTrabajo {
 		this.fechaInicio = fechaInicio;
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.periodoDia = periodoDia;
+		this.horasLaborales = horasLaborales;
 	}
 
 	public Long getId() {
@@ -121,5 +122,15 @@ public class HorariosDeTrabajo {
 	public void setPeriodoDia(String periodoDia) {
 		this.periodoDia = periodoDia;
 	}
+
+	public HoraLaboral getHorasLaborales() {
+		return horasLaborales;
+	}
+
+	public void setHorasLaborales(HoraLaboral horasLaborales) {
+		this.horasLaborales = horasLaborales;
+	}
+	
+	
 }
 

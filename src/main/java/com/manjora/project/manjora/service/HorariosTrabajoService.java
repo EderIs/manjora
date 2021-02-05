@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.manjora.project.manjora.entity.HoraLaboral;
 import com.manjora.project.manjora.entity.HorariosDeTrabajo;
 import com.manjora.project.manjora.repository.HorariosTrabajoRepository;
 
@@ -22,16 +23,21 @@ public class HorariosTrabajoService {
 		return horarioTrabajoRepository.findAll();
 	}
 	
+	public List<HorariosDeTrabajo> findAllByNombre(String nombreHorariosT) {
+		
+		return horarioTrabajoRepository.findAllByNombre(nombreHorariosT);
+	}
+	
 	public Optional<HorariosDeTrabajo> getOne(Long id){
 		return horarioTrabajoRepository.findById(id);
 	}
 	
-	public Optional<HorariosDeTrabajo> getByNombreHorariosDeTrabajo(String nombreHorariosDeTrabajo){
-		return horarioTrabajoRepository.findByNombreHorariosT(nombreHorariosDeTrabajo);
+	public Optional<HorariosDeTrabajo> getByNombreHorariosDeTrabajo(String nombreHorariosT){
+		return horarioTrabajoRepository.findByNombreHorariosT(nombreHorariosT);
 	}
 	
-	public void save(HorariosDeTrabajo HorariosDeTrabajo) {
-		horarioTrabajoRepository.save(HorariosDeTrabajo);
+	public void save(HorariosDeTrabajo horarioTrab) {
+		horarioTrabajoRepository.save(horarioTrab);
 	}
 	
 	public void delete(Long id) {
@@ -42,8 +48,8 @@ public class HorariosTrabajoService {
 		return horarioTrabajoRepository.existsById(id);
 	}
 	
-	public boolean existsByNombreHorariosT(String nombreHorariosDeTrabajo) {
-		return horarioTrabajoRepository.existsByNombreHorariosT(nombreHorariosDeTrabajo);
+	public boolean existsByNombreHorariosT(String nombreHorariosT) {
+		return horarioTrabajoRepository.existsByNombreHorariosT(nombreHorariosT);
 	}
 	
 }
