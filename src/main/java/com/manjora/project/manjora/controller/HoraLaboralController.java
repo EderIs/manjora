@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.manjora.project.manjora.dto.HoraLaboralDto;
 import com.manjora.project.manjora.dto.Mensaje;
+import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.HoraLaboral;
 import com.manjora.project.manjora.entity.HorariosDeTrabajo;
 import com.manjora.project.manjora.service.HoraLaboralService;
@@ -31,9 +32,20 @@ public class HoraLaboralController {
 	private HoraLaboralService horaLaboralService;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<HorariosDeTrabajo>> List(){
+	public ResponseEntity<List<HoraLaboral>> List(){
 		List<HoraLaboral> list = horaLaboralService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/{nombreHoraL}")
+	public ResponseEntity<List<HoraLaboral>>ListAllByNombre(@PathVariable("nombreHoraL") String nombreHoraL ){
+		try {
+			List<HoraLaboral> list = horaLaboralService.findAllByNombre(nombreHoraL);
+			return new ResponseEntity(list, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity(new Mensaje("Error"),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	@GetMapping("/detail/{id}")
@@ -44,7 +56,7 @@ public class HoraLaboralController {
 		return new ResponseEntity<HoraLaboral>(horaLaboral,HttpStatus.OK);
 	}
 	
-	@GetMapping("/detailname/{nombreHorarioT}")
+	@GetMapping("/detailname/{nombreHoraL}")
 	public ResponseEntity<HoraLaboral> getBynombreHoraL(@PathVariable("nombreHoraL") String nombreHoraL){
 		if(!horaLaboralService.existsByNombreHoraL(nombreHoraL))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
@@ -58,6 +70,7 @@ public class HoraLaboralController {
 			return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
 		
 		HoraLaboral horaLaboral =new HoraLaboral(horaLaboralDto.getNombreHoraL(),horaLaboralDto.getPromedioHoraDia());
+		horaLaboralService.save(horaLaboral);
 		return new ResponseEntity(new Mensaje("Hora laboral Creada"),HttpStatus.OK);
 	}
 	

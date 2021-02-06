@@ -60,7 +60,7 @@ public class Empleado {
 	private String contactoEmergencia;
 	private String telefonoEmergencia;
 	private double kmCasaTrabajo;
-	private String Sexo;
+	private String sexo;
 	private String estadoCivil;
 	private int numeroHijos;
 	private Date fechaNacimiento;
@@ -79,33 +79,27 @@ public class Empleado {
 	public Empleado() {
 	
 	}
-	
-	public Empleado(byte fotografia, String nombreEmpleado,/* Long idCategoria, Long direccionTrabajo, Long idDepartamento,
-			Long idPuesto, */String tituloTrabajo,/* Long idResponsable, Long idMonitor, Long horasLaborales,
-			Long idCuentaBancaria,*/ String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
+	public Empleado(byte fotografia, String nombreEmpleado, Long idCategoria, Contacto direccionTrabajo,
+			Puesto idPuesto, String tituloTrabajo, Empleado idResponsable, Empleado idMonitor,
+			HoraLaboral horasLaborales, String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
-			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional,/* Long idUsuario,*/
+			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, Usuario idUsuario,
 			String nota, boolean estado) {
+		super();
 		this.fotografia = fotografia;
 		this.nombreEmpleado = nombreEmpleado;
-		/*
 		this.idCategoria = idCategoria;
 		this.direccionTrabajo = direccionTrabajo;
-		this.idDepartamento = idDepartamento;
 		this.idPuesto = idPuesto;
-		*/
 		this.tituloTrabajo = tituloTrabajo;
-		/*
 		this.idResponsable = idResponsable;
 		this.idMonitor = idMonitor;
 		this.horasLaborales = horasLaborales;
-		this.idCuentaBancaria = idCuentaBancaria;
-		*/
 		this.direccionPrivada = direccionPrivada;
 		this.contactoEmergencia = contactoEmergencia;
 		this.telefonoEmergencia = telefonoEmergencia;
 		this.kmCasaTrabajo = kmCasaTrabajo;
-		Sexo = sexo;
+		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
 		this.numeroHijos = numeroHijos;
 		this.fechaNacimiento = fechaNacimiento;
@@ -113,24 +107,20 @@ public class Empleado {
 		this.nivelCertificado = nivelCertificado;
 		this.escuela = escuela;
 		this.notaAdicional = notaAdicional;
-		//this.idUsuario = idUsuario;
+		this.idUsuario = idUsuario;
 		this.nota = nota;
 		this.estado = estado;
 	}
-	
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public byte getFotografia() {
 		return fotografia;
 	}
-	public void setFotografia(byte fotogra) {
+	public void setFotografia(byte fotografia) {
 		this.fotografia = fotografia;
 	}
 	public String getNombreEmpleado() {
@@ -139,64 +129,48 @@ public class Empleado {
 	public void setNombreEmpleado(String nombreEmpleado) {
 		this.nombreEmpleado = nombreEmpleado;
 	}
-	/*
 	public Long getIdCategoria() {
 		return idCategoria;
 	}
 	public void setIdCategoria(Long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
-	public Long getDireccionTrabajo() {
+	public Contacto getDireccionTrabajo() {
 		return direccionTrabajo;
 	}
-	public void setDireccionTrabajo(Long direccionTrabajo) {
+	public void setDireccionTrabajo(Contacto direccionTrabajo) {
 		this.direccionTrabajo = direccionTrabajo;
 	}
-	public Long getIdDepartamento() {
-		return idDepartamento;
-	}
-	public void setIdDepartamento(Long idDepartamento) {
-		this.idDepartamento = idDepartamento;
-	}
-	public Long getIdPuesto() {
+	public Puesto getIdPuesto() {
 		return idPuesto;
 	}
-	public void setIdPuesto(Long idPuesto) {
+	public void setIdPuesto(Puesto idPuesto) {
 		this.idPuesto = idPuesto;
 	}
-	*/
 	public String getTituloTrabajo() {
 		return tituloTrabajo;
 	}
 	public void setTituloTrabajo(String tituloTrabajo) {
 		this.tituloTrabajo = tituloTrabajo;
 	}
-	/*
-	public Long getIdResponsable() {
+	public Empleado getIdResponsable() {
 		return idResponsable;
 	}
-	public void setIdResponsable(Long idResponsable) {
+	public void setIdResponsable(Empleado idResponsable) {
 		this.idResponsable = idResponsable;
 	}
-	public Long getIdMonitor() {
+	public Empleado getIdMonitor() {
 		return idMonitor;
 	}
-	public void setIdMonitor(Long idMonitor) {
+	public void setIdMonitor(Empleado idMonitor) {
 		this.idMonitor = idMonitor;
 	}
-	public Long getHorasLaborales() {
+	public HoraLaboral getHorasLaborales() {
 		return horasLaborales;
 	}
-	public void setHorasLaborales(Long horasLaborales) {
+	public void setHorasLaborales(HoraLaboral horasLaborales) {
 		this.horasLaborales = horasLaborales;
 	}
-	public Long getIdCuentaBancaria() {
-		return idCuentaBancaria;
-	}
-	public void setIdCuentaBancaria(Long idCuentaBancaria) {
-		this.idCuentaBancaria = idCuentaBancaria;
-	}
-	*/
 	public String getDireccionPrivada() {
 		return direccionPrivada;
 	}
@@ -222,10 +196,10 @@ public class Empleado {
 		this.kmCasaTrabajo = kmCasaTrabajo;
 	}
 	public String getSexo() {
-		return Sexo;
+		return sexo;
 	}
 	public void setSexo(String sexo) {
-		Sexo = sexo;
+		this.sexo = sexo;
 	}
 	public String getEstadoCivil() {
 		return estadoCivil;
@@ -269,14 +243,12 @@ public class Empleado {
 	public void setNotaAdicional(String notaAdicional) {
 		this.notaAdicional = notaAdicional;
 	}
-	/*
-	public Long getIdUsuario() {
+	public Usuario getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(Long idUsuario) {
+	public void setIdUsuario(Usuario idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	*/
 	public String getNota() {
 		return nota;
 	}
@@ -289,6 +261,8 @@ public class Empleado {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+	
+	
 	
 	
 }

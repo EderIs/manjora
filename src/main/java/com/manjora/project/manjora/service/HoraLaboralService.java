@@ -23,6 +23,11 @@ public class HoraLaboralService {
 		return horaLaboralRepository.findAll();
 	}
 	
+	public List<HoraLaboral> findAllByNombre(String nombreHoraLaboral) {
+		
+		return horaLaboralRepository.findAllByNombre(nombreHoraLaboral);
+	}
+	
 	public Optional<HoraLaboral> getOne(Long id){
 		return horaLaboralRepository.findById(id);
 	}

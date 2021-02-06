@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.manjora.project.manjora.entity.Pais;
 import com.manjora.project.manjora.entity.Titulo;
 import com.manjora.project.manjora.repository.TituloRepository;
 
@@ -43,5 +44,10 @@ public class TituloService {
 	
 	public boolean existsByTitulo(String titulo) {
 		return tituloRepository.existsByTitulo(titulo);
+	}
+	
+	public List<Titulo> findAllByTitulo(String titulo) {
+		
+		return tituloRepository.findAllByTitulo(titulo);
 	}
 }

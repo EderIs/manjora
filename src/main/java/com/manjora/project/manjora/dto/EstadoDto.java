@@ -8,7 +8,7 @@ import com.manjora.project.manjora.entity.Pais;
 
 public class EstadoDto {
 
-	@NotBlank
+	
 	private String nombreEstado;
 	private int codigo;
 	
@@ -19,7 +19,7 @@ public class EstadoDto {
 		
 	}
 
-	public EstadoDto(@NotBlank String nombreEstado, int codigo, Pais pais) {
+	public EstadoDto(String nombreEstado, int codigo, Pais pais) {
 		super();
 		this.nombreEstado = nombreEstado;
 		this.codigo = codigo;
