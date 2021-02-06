@@ -1,5 +1,6 @@
 package com.manjora.project.manjora.security.entity;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,15 +22,22 @@ public class UsuarioSec {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotNull
+    
     private String nombre;
-    @NotNull
+    
     @Column(unique = true)
     private String nombreUsuario;
     @NotNull
     private String email;
     @NotNull
     private String password;
+    
+    private Date fechaCreacion;
+	
+    private Date ultimoAcceso;
+	
+	private boolean estado;
+    
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
@@ -39,14 +47,27 @@ public class UsuarioSec {
     public UsuarioSec() {
     }
 
-    public UsuarioSec(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    public UsuarioSec(String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    
+    public UsuarioSec(String nombreUsuario, String email, String password, Date fechaCreacion,
+			Date ultimoAcceso, boolean estado) {
+		
+		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+		this.fechaCreacion = fechaCreacion;
+		this.ultimoAcceso = ultimoAcceso;
+		this.estado = estado;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -93,4 +114,28 @@ public class UsuarioSec {
     public void setRoles(Set<RolSec> roles) {
         this.roles = roles;
     }
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getUltimoAcceso() {
+		return ultimoAcceso;
+	}
+
+	public void setUltimoAcceso(Date ultimoAcceso) {
+		this.ultimoAcceso = ultimoAcceso;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 }

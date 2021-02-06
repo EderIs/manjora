@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.manjora.project.manjora.entity.Titulo;
-import com.manjora.project.manjora.entity.Usuario;
 import com.manjora.project.manjora.repository.TituloRepository;
 
 @Service

@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.manjora.project.manjora.security.entity.UsuarioSec;
+
 @Entity
 @Table(name = "contactos")
 public class Contacto {
@@ -53,7 +55,7 @@ public class Contacto {
 	
 	@ManyToOne
 	@JoinColumn(name = "comercial_id")
-	private Usuario usuario;
+	private UsuarioSec usuario;
 	
 	private String referenciaInterna;
 	
@@ -66,7 +68,7 @@ public class Contacto {
 	public Contacto(String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
-			boolean rol, Usuario usuario, String referenciaInterna) {
+			boolean rol, UsuarioSec usuario, String referenciaInterna) {
 		super();
 		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
@@ -281,12 +283,12 @@ public class Contacto {
 	}
 
 
-	public Usuario getUsuario() {
+	public UsuarioSec getUsuario() {
 		return usuario;
 	}
 
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioSec usuario) {
 		this.usuario = usuario;
 	}
 

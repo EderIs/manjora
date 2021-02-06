@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.manjora.project.manjora.security.entity.UsuarioSec;
+
 //dhjd
 
 @Entity
@@ -69,7 +71,7 @@ public class Empleado {
 	
 	@ManyToOne
     @JoinColumn(name="usuario_id", referencedColumnName = "id")
-	private Usuario idUsuario;
+	private UsuarioSec idUsuario;
 	
 	
 	private String nota;

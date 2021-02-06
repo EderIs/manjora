@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.entity.Estado;
 import com.manjora.project.manjora.entity.Titulo;
-import com.manjora.project.manjora.entity.Usuario;
+import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 public class ContactoDto {
 
@@ -40,7 +40,7 @@ public class ContactoDto {
 	private String notas;
 	private boolean rol;
 
-	private Usuario usuario;
+	private UsuarioSec usuario;
 
 	private String referenciaInterna;
 
@@ -51,7 +51,7 @@ public class ContactoDto {
 	public ContactoDto(@NotBlank String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
-			boolean rol, Usuario usuario, String referenciaInterna) {
+			boolean rol, UsuarioSec usuario, String referenciaInterna) {
 		super();
 		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
@@ -219,11 +219,11 @@ public class ContactoDto {
 		this.rol = rol;
 	}
 
-	public Usuario getUsuario() {
+	public UsuarioSec getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioSec usuario) {
 		this.usuario = usuario;
 	}
 

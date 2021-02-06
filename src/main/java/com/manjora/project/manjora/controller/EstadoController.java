@@ -21,7 +21,6 @@ import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.UsuarioDto;
 import com.manjora.project.manjora.entity.Banco;
 import com.manjora.project.manjora.entity.Estado;
-import com.manjora.project.manjora.entity.Usuario;
 import com.manjora.project.manjora.service.EstadoService;
 
 

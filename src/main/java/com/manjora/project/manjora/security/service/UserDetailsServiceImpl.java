@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.manjora.project.manjora.security.entity.UsuarioPrincipalSec;
 import com.manjora.project.manjora.security.entity.UsuarioSec;
-import com.manjora.project.manjora.service.UsuarioService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{

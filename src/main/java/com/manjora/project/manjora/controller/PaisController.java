@@ -21,7 +21,7 @@ import com.manjora.project.manjora.entity.Pais;
 import com.manjora.project.manjora.service.PaisService;
 
 @RestController
-@RequestMapping("auth/pais")
+@RequestMapping("pais")
 @CrossOrigin(origins = "http://localhost:4200")
 public class PaisController {
 

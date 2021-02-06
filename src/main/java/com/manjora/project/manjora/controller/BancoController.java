@@ -20,7 +20,6 @@ import com.manjora.project.manjora.dto.BancoDto;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.UsuarioDto;
 import com.manjora.project.manjora.entity.Banco;
-import com.manjora.project.manjora.entity.Usuario;
 import com.manjora.project.manjora.repository.BancoRepository;
 import com.manjora.project.manjora.service.BancoService;
 
