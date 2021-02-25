@@ -1,11 +1,16 @@
 package com.manjora.project.manjora.security.dto;
 
+import java.io.File;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.manjora.project.manjora.security.entity.RolSec;
 
 public class UsuarioSecDao {
 	
@@ -23,10 +28,11 @@ public class UsuarioSecDao {
     private Date ultimoAcceso;
 	
 	private boolean estado;
-    
-    private Set<String> roles = new HashSet<>();
+    	
+	private String pathImagen;
+	
+    private Set<RolSec> roles = new HashSet<>();
 
-    
     
 	public UsuarioSecDao() {
 		
@@ -35,7 +41,7 @@ public class UsuarioSecDao {
 
 
 	public UsuarioSecDao(@NotBlank String nombre, @NotBlank String nombreUsuario, @Email String email,
-			@NotBlank String password, Date fechaCreacion, Date ultimoAcceso, boolean estado, Set<String> roles) {
+			@NotBlank String password, Date fechaCreacion, Date ultimoAcceso, boolean estado, Set<RolSec> roles) {
 		
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
@@ -132,16 +138,26 @@ public class UsuarioSecDao {
 	}
 
 	
-	
-
-	
-	public Set<String> getRoles() {
+	public Set<RolSec> getRoles() {
 		return roles;
 	}
 
 
-
-	public void setRoles(Set<String> roles) {
+	public void setRoles(Set<RolSec> roles) {
 		this.roles = roles;
 	}
+
+
+
+	public String getPathImagen() {
+		return pathImagen;
+	}
+
+
+
+	public void setPathImagen(String pathImagen) {
+		this.pathImagen = pathImagen;
+	}
+	
+	
 }

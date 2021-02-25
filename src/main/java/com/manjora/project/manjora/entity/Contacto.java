@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 @Entity
@@ -25,6 +27,7 @@ public class Contacto {
 	
 	@OneToOne
 	@JoinColumn(name = "compania_id")
+	@JsonIgnore
 	private Contacto contacto;
 	
 	private String calle;
@@ -65,6 +68,12 @@ public class Contacto {
 	}
 
 
+	public Contacto(Long id, String nombreContacto) {
+	
+		this.id = id;
+		this.nombreContacto = nombreContacto;
+	}
+	
 	public Contacto(String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,

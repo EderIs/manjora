@@ -10,7 +10,8 @@ import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.HoraLaboral;
 import com.manjora.project.manjora.entity.Puesto;
-import com.manjora.project.manjora.entity.Usuario;
+import com.manjora.project.manjora.security.entity.UsuarioSec;
+
 
 public class EmpleadoDto {
 	
@@ -44,7 +45,7 @@ public class EmpleadoDto {
 	private String escuela;
 	private String notaAdicional;
 	
-	private Usuario idUsuario;
+	private UsuarioSec idUsuario;
 	
 	
 	private String nota;
@@ -57,7 +58,7 @@ public class EmpleadoDto {
 			Puesto idPuesto, String tituloTrabajo, Empleado idResponsable, Empleado idMonitor,
 			HoraLaboral horasLaborales, String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
-			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, Usuario idUsuario,
+			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec idUsuario,
 			String nota, boolean estado) {
 		super();
 		this.fotografia = fotografia;
@@ -211,10 +212,10 @@ public class EmpleadoDto {
 	public void setNotaAdicional(String notaAdicional) {
 		this.notaAdicional = notaAdicional;
 	}
-	public Usuario getIdUsuario() {
+	public UsuarioSec getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(Usuario idUsuario) {
+	public void setIdUsuario(UsuarioSec idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	public String getNota() {

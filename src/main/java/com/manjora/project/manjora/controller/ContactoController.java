@@ -35,6 +35,13 @@ public class ContactoController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 	
+	@GetMapping("/listContactos/{id}")
+	public ResponseEntity<List<Contacto>>getContactoToCalendario(@PathVariable(name="id")int id){
+		
+		return new ResponseEntity(contactoService.getAllContactoToCalendario(id),HttpStatus.OK);
+		
+	}
+	
 	@GetMapping("/list/{nombre}")
 	public ResponseEntity<List<Contacto>>ListAllByNombre(@PathVariable("nombre") String nombre ){
 		try {
@@ -46,6 +53,10 @@ public class ContactoController {
 		
 	}
 
+	@GetMapping("/contactoU/{id}")
+	public Long contactoUs(@PathVariable(name="id")int idCont) {
+		return this.contactoService.getContactoId(idCont);
+	}
 	@GetMapping("/detail/{id}")
 	public ResponseEntity<Contacto> getById(@PathVariable("id") Long id) {
 		if (!contactoService.existsById(id))

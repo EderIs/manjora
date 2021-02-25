@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.sun.istack.NotNull;
 
 @Entity
@@ -37,6 +39,9 @@ public class UsuarioSec {
     private Date ultimoAcceso;
 	
 	private boolean estado;
+	
+	private String pathImagen;
+	
     
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
@@ -54,10 +59,23 @@ public class UsuarioSec {
         this.password = password;
     }
 
-    
-    public UsuarioSec(String nombreUsuario, String email, String password, Date fechaCreacion,
-			Date ultimoAcceso, boolean estado) {
+    public UsuarioSec(int id, String nombre, String nombreUsuario, String email, String password, Date fechaCreacion,
+			Date ultimoAcceso, boolean estado, String imagen, Set<RolSec> roles) {
 		
+    	this.id = id;
+		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+		this.fechaCreacion = fechaCreacion;
+		this.ultimoAcceso = ultimoAcceso;
+		this.estado = estado;
+		this.pathImagen = imagen;
+		this.roles = roles;
+	}
+
+	public UsuarioSec(String nombre,String nombreUsuario, String email, String password, Date fechaCreacion,
+			Date ultimoAcceso, boolean estado) {
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
 		this.email = email;
@@ -137,5 +155,13 @@ public class UsuarioSec {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	public String getPathImagen() {
+		return pathImagen;
+	}
+
+	public void setPathImagen(String imagen) {
+		this.pathImagen = imagen;
 	}
 }

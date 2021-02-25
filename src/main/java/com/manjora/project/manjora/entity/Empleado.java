@@ -83,7 +83,7 @@ public class Empleado {
 			Puesto idPuesto, String tituloTrabajo, Empleado idResponsable, Empleado idMonitor,
 			HoraLaboral horasLaborales, String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
-			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, Usuario idUsuario,
+			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec idUsuario,
 			String nota, boolean estado) {
 		super();
 		this.fotografia = fotografia;
@@ -243,10 +243,10 @@ public class Empleado {
 	public void setNotaAdicional(String notaAdicional) {
 		this.notaAdicional = notaAdicional;
 	}
-	public Usuario getIdUsuario() {
+	public UsuarioSec getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(Usuario idUsuario) {
+	public void setIdUsuario(UsuarioSec idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	public String getNota() {
