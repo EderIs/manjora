@@ -48,6 +48,9 @@ public class UsuarioSecController {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	ImagenService imagenService;
 
 	@GetMapping("/list")
 	public ResponseEntity<List<UsuarioSec>> List() {
@@ -153,7 +156,14 @@ public class UsuarioSecController {
 	public ResponseEntity<?> delete(@PathVariable("id") int id) {
 		if (!usuarioSecService.existsById(id))
 			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		usuarioSecService.delete(id);
+		
+		UsuarioSec usuarioE = this.usuarioSecService.getOne(id).get();
+		
+		if(usuarioE.getPathImagen() != "Ninguna" && !usuarioE.getPathImagen().isEmpty()) {
+			imagenService.deleteImage(usuarioE.getPathImagen());
+		}
+		
+		usuarioSecService.delete(usuarioE.getId());
 		return new ResponseEntity(new Mensaje("Usuario Eliminado"), HttpStatus.OK);
 	}
 }
