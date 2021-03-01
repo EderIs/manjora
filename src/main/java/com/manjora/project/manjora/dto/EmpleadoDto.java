@@ -1,11 +1,6 @@
 package com.manjora.project.manjora.dto;
 
 import java.sql.Date;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.HoraLaboral;
@@ -15,20 +10,20 @@ import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 public class EmpleadoDto {
 	
-	private byte fotografia;
+	private String fotografia;
 	private String nombreEmpleado;
 	
-	private Long idCategoria;
+	private Long categoria;
 	
 	private Contacto direccionTrabajo;
 	
-	private Puesto idPuesto;
+	private Puesto puesto;
 	
 	private String tituloTrabajo;
 	
-	private Empleado idResponsable;
+	private Empleado responsable;
 	
-	private Empleado idMonitor;
+	private Empleado monitor;
 	
 	private HoraLaboral horasLaborales;
 	
@@ -45,7 +40,7 @@ public class EmpleadoDto {
 	private String escuela;
 	private String notaAdicional;
 	
-	private UsuarioSec idUsuario;
+	private UsuarioSec usuario;
 	
 	
 	private String nota;
@@ -54,21 +49,21 @@ public class EmpleadoDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public EmpleadoDto(byte fotografia, String nombreEmpleado, Long idCategoria, Contacto direccionTrabajo,
-			Puesto idPuesto, String tituloTrabajo, Empleado idResponsable, Empleado idMonitor,
+	public EmpleadoDto(String fotografia, String nombreEmpleado, Long categoria, Contacto direccionTrabajo,
+			Puesto puesto, String tituloTrabajo, Empleado responsable, Empleado monitor,
 			HoraLaboral horasLaborales, String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
-			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec idUsuario,
+			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec usuario,
 			String nota, boolean estado) {
 		super();
 		this.fotografia = fotografia;
 		this.nombreEmpleado = nombreEmpleado;
-		this.idCategoria = idCategoria;
+		this.categoria = categoria;
 		this.direccionTrabajo = direccionTrabajo;
-		this.idPuesto = idPuesto;
+		this.puesto = puesto;
 		this.tituloTrabajo = tituloTrabajo;
-		this.idResponsable = idResponsable;
-		this.idMonitor = idMonitor;
+		this.responsable = responsable;
+		this.monitor = monitor;
 		this.horasLaborales = horasLaborales;
 		this.direccionPrivada = direccionPrivada;
 		this.contactoEmergencia = contactoEmergencia;
@@ -82,14 +77,14 @@ public class EmpleadoDto {
 		this.nivelCertificado = nivelCertificado;
 		this.escuela = escuela;
 		this.notaAdicional = notaAdicional;
-		this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.nota = nota;
 		this.estado = estado;
 	}
-	public byte getFotografia() {
+	public String getFotografia() {
 		return fotografia;
 	}
-	public void setFotografia(byte fotografia) {
+	public void setFotografia(String fotografia) {
 		this.fotografia = fotografia;
 	}
 	public String getNombreEmpleado() {
@@ -98,11 +93,11 @@ public class EmpleadoDto {
 	public void setNombreEmpleado(String nombreEmpleado) {
 		this.nombreEmpleado = nombreEmpleado;
 	}
-	public Long getIdCategoria() {
-		return idCategoria;
+	public Long getCategoria() {
+		return categoria;
 	}
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setCategoria(Long categoria) {
+		this.categoria = categoria;
 	}
 	public Contacto getDireccionTrabajo() {
 		return direccionTrabajo;
@@ -110,11 +105,11 @@ public class EmpleadoDto {
 	public void setDireccionTrabajo(Contacto direccionTrabajo) {
 		this.direccionTrabajo = direccionTrabajo;
 	}
-	public Puesto getIdPuesto() {
-		return idPuesto;
+	public Puesto getPuesto() {
+		return puesto;
 	}
-	public void setIdPuesto(Puesto idPuesto) {
-		this.idPuesto = idPuesto;
+	public void setPuesto(Puesto puesto) {
+		this.puesto = puesto;
 	}
 	public String getTituloTrabajo() {
 		return tituloTrabajo;
@@ -122,17 +117,17 @@ public class EmpleadoDto {
 	public void setTituloTrabajo(String tituloTrabajo) {
 		this.tituloTrabajo = tituloTrabajo;
 	}
-	public Empleado getIdResponsable() {
-		return idResponsable;
+	public Empleado getResponsable() {
+		return responsable;
 	}
-	public void setIdResponsable(Empleado idResponsable) {
-		this.idResponsable = idResponsable;
+	public void setResponsable(Empleado responsable) {
+		this.responsable = responsable;
 	}
-	public Empleado getIdMonitor() {
-		return idMonitor;
+	public Empleado getMonitor() {
+		return monitor;
 	}
-	public void setIdMonitor(Empleado idMonitor) {
-		this.idMonitor = idMonitor;
+	public void setMonitor(Empleado monitor) {
+		this.monitor = monitor;
 	}
 	public HoraLaboral getHorasLaborales() {
 		return horasLaborales;
@@ -212,11 +207,11 @@ public class EmpleadoDto {
 	public void setNotaAdicional(String notaAdicional) {
 		this.notaAdicional = notaAdicional;
 	}
-	public UsuarioSec getIdUsuario() {
-		return idUsuario;
+	public UsuarioSec getUsuario() {
+		return usuario;
 	}
-	public void setIdUsuario(UsuarioSec idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(UsuarioSec usuario) {
+		this.usuario = usuario;
 	}
 	public String getNota() {
 		return nota;
@@ -230,7 +225,5 @@ public class EmpleadoDto {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
-	
 
 }

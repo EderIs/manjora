@@ -2,13 +2,14 @@ package com.manjora.project.manjora.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,30 +24,32 @@ public class Empleado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private byte fotografia;
+	
+	private String fotografia;
 	private String nombreEmpleado;
 	
-	private Long idCategoria;
+	@Column(name = "id_categoria")
+	private Long categoria;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="direccion_id", referencedColumnName = "id")
 	private Contacto direccionTrabajo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="puesto_id", referencedColumnName = "id")
-	private Puesto idPuesto;
+	private Puesto puesto;
 	
 	private String tituloTrabajo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="responsable_id", referencedColumnName = "id")
-	private Empleado idResponsable;
+	private Empleado responsable;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="monitor_id", referencedColumnName = "id")
-	private Empleado idMonitor;
+	private Empleado monitor;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="horasLaborales_id", referencedColumnName = "id")
 	private HoraLaboral horasLaborales;
 	
@@ -68,32 +71,29 @@ public class Empleado {
 	private String nivelCertificado;
 	private String escuela;
 	private String notaAdicional;
-	
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="usuario_id", referencedColumnName = "id")
-	private UsuarioSec idUsuario;
-	
-	
+	private UsuarioSec usuario;
 	private String nota;
 	private boolean estado;
 	public Empleado() {
 	
 	}
-	public Empleado(byte fotografia, String nombreEmpleado, Long idCategoria, Contacto direccionTrabajo,
-			Puesto idPuesto, String tituloTrabajo, Empleado idResponsable, Empleado idMonitor,
+	public Empleado(String fotografia, String nombreEmpleado, Long categoria, Contacto direccionTrabajo,
+			Puesto puesto, String tituloTrabajo, Empleado responsable, Empleado monitor,
 			HoraLaboral horasLaborales, String direccionPrivada, String contactoEmergencia, String telefonoEmergencia,
 			double kmCasaTrabajo, String sexo, String estadoCivil, int numeroHijos, Date fechaNacimiento,
-			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec idUsuario,
+			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec usuario,
 			String nota, boolean estado) {
 		super();
 		this.fotografia = fotografia;
 		this.nombreEmpleado = nombreEmpleado;
-		this.idCategoria = idCategoria;
+		this.categoria = categoria;
 		this.direccionTrabajo = direccionTrabajo;
-		this.idPuesto = idPuesto;
+		this.puesto = puesto;
 		this.tituloTrabajo = tituloTrabajo;
-		this.idResponsable = idResponsable;
-		this.idMonitor = idMonitor;
+		this.responsable = responsable;
+		this.monitor = monitor;
 		this.horasLaborales = horasLaborales;
 		this.direccionPrivada = direccionPrivada;
 		this.contactoEmergencia = contactoEmergencia;
@@ -107,7 +107,7 @@ public class Empleado {
 		this.nivelCertificado = nivelCertificado;
 		this.escuela = escuela;
 		this.notaAdicional = notaAdicional;
-		this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.nota = nota;
 		this.estado = estado;
 	}
@@ -117,10 +117,10 @@ public class Empleado {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public byte getFotografia() {
+	public String getFotografia() {
 		return fotografia;
 	}
-	public void setFotografia(byte fotografia) {
+	public void setFotografia(String fotografia) {
 		this.fotografia = fotografia;
 	}
 	public String getNombreEmpleado() {
@@ -129,11 +129,11 @@ public class Empleado {
 	public void setNombreEmpleado(String nombreEmpleado) {
 		this.nombreEmpleado = nombreEmpleado;
 	}
-	public Long getIdCategoria() {
-		return idCategoria;
+	public Long getCategoria() {
+		return categoria;
 	}
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setCategoria(Long categoria) {
+		this.categoria = categoria;
 	}
 	public Contacto getDireccionTrabajo() {
 		return direccionTrabajo;
@@ -141,11 +141,11 @@ public class Empleado {
 	public void setDireccionTrabajo(Contacto direccionTrabajo) {
 		this.direccionTrabajo = direccionTrabajo;
 	}
-	public Puesto getIdPuesto() {
-		return idPuesto;
+	public Puesto getPuesto() {
+		return puesto;
 	}
-	public void setIdPuesto(Puesto idPuesto) {
-		this.idPuesto = idPuesto;
+	public void setPuesto(Puesto puesto) {
+		this.puesto = puesto;
 	}
 	public String getTituloTrabajo() {
 		return tituloTrabajo;
@@ -153,17 +153,17 @@ public class Empleado {
 	public void setTituloTrabajo(String tituloTrabajo) {
 		this.tituloTrabajo = tituloTrabajo;
 	}
-	public Empleado getIdResponsable() {
-		return idResponsable;
+	public Empleado getResponsable() {
+		return responsable;
 	}
-	public void setIdResponsable(Empleado idResponsable) {
-		this.idResponsable = idResponsable;
+	public void setResponsable(Empleado responsable) {
+		this.responsable = responsable;
 	}
-	public Empleado getIdMonitor() {
-		return idMonitor;
+	public Empleado getMonitor() {
+		return monitor;
 	}
-	public void setIdMonitor(Empleado idMonitor) {
-		this.idMonitor = idMonitor;
+	public void setMonitor(Empleado monitor) {
+		this.monitor = monitor;
 	}
 	public HoraLaboral getHorasLaborales() {
 		return horasLaborales;
@@ -243,11 +243,11 @@ public class Empleado {
 	public void setNotaAdicional(String notaAdicional) {
 		this.notaAdicional = notaAdicional;
 	}
-	public UsuarioSec getIdUsuario() {
-		return idUsuario;
+	public UsuarioSec getUsuario() {
+		return usuario;
 	}
-	public void setIdUsuario(UsuarioSec idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(UsuarioSec usuario) {
+		this.usuario = usuario;
 	}
 	public String getNota() {
 		return nota;
@@ -261,8 +261,4 @@ public class Empleado {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
-	
-	
-	
 }

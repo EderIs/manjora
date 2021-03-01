@@ -1,9 +1,18 @@
 package com.manjora.project.manjora.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +23,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.manjora.project.manjora.dto.EmpleadoDto;
 import com.manjora.project.manjora.dto.Mensaje;
@@ -69,19 +80,21 @@ public class EmpleadoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody EmpleadoDto empleadoDto){
+		
 		if(StringUtils.isBlank(empleadoDto.getNombreEmpleado()))
 			return new ResponseEntity(new Mensaje("El Nombre del Puesto es Obligatorio"), HttpStatus.BAD_REQUEST);
 		if(empleadoService.existsByNombreEmpleado(empleadoDto.getNombreEmpleado()))
 			return new ResponseEntity(new Mensaje("El Puesto ingresado ya existe"),HttpStatus.BAD_REQUEST);
+		
 		Empleado empleado = new Empleado(
 				empleadoDto.getFotografia(),
 				empleadoDto.getNombreEmpleado(),
-				empleadoDto.getIdCategoria(),
+				empleadoDto.getCategoria(),
 				empleadoDto.getDireccionTrabajo(),
-				empleadoDto.getIdPuesto(),
+				empleadoDto.getPuesto(),
 				empleadoDto.getTituloTrabajo(),
-				empleadoDto.getIdResponsable(),
-				empleadoDto.getIdMonitor(),
+				empleadoDto.getResponsable(),
+				empleadoDto.getMonitor(),
 				empleadoDto.getHorasLaborales(),
 				empleadoDto.getDireccionPrivada(),
 				empleadoDto.getContactoEmergencia(),
@@ -95,7 +108,7 @@ public class EmpleadoController {
 				empleadoDto.getNivelCertificado(),
 				empleadoDto.getEscuela(),
 				empleadoDto.getNotaAdicional(),
-				empleadoDto.getIdUsuario(),
+				empleadoDto.getUsuario(),
 				empleadoDto.getNota(),
 				empleadoDto.isEstado()
 				);
@@ -115,12 +128,12 @@ public class EmpleadoController {
 		Empleado empleado = empleadoService.getOne(id).get();
 		empleado.setFotografia(empleadoDto.getFotografia());
 		empleado.setNombreEmpleado(empleadoDto.getNombreEmpleado());
-		empleado.setIdCategoria(empleadoDto.getIdCategoria());
+		empleado.setCategoria(empleadoDto.getCategoria());
 		empleado.setDireccionTrabajo(empleadoDto.getDireccionTrabajo());
-		empleado.setIdPuesto(empleadoDto.getIdPuesto());
+		empleado.setPuesto(empleadoDto.getPuesto());
 		empleado.setTituloTrabajo(empleadoDto.getTituloTrabajo());
-		empleado.setIdResponsable(empleadoDto.getIdResponsable());
-		empleado.setIdMonitor(empleadoDto.getIdMonitor());
+		empleado.setResponsable(empleadoDto.getResponsable());
+		empleado.setMonitor(empleadoDto.getMonitor());
 		empleado.setHorasLaborales(empleadoDto.getHorasLaborales());
 		empleado.setDireccionPrivada(empleadoDto.getDireccionPrivada());
 		empleado.setContactoEmergencia(empleadoDto.getContactoEmergencia());
@@ -134,7 +147,7 @@ public class EmpleadoController {
 		empleado.setNivelCertificado(empleadoDto.getNivelCertificado());
 		empleado.setEscuela(empleadoDto.getEscuela());
 		empleado.setNotaAdicional(empleadoDto.getNotaAdicional());
-		empleado.setIdUsuario(empleadoDto.getIdUsuario());
+		empleado.setUsuario(empleadoDto.getUsuario());
 		empleado.setNota(empleadoDto.getNota());
 		empleado.setEstado(empleadoDto.isEstado());
 		empleadoService.save(empleado);

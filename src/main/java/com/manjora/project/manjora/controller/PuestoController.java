@@ -1,6 +1,7 @@
 package com.manjora.project.manjora.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.PuestoDto;
 import com.manjora.project.manjora.entity.Puesto;
+import com.manjora.project.manjora.repository.PuestoRepository;
 import com.manjora.project.manjora.service.PuestoService;
 
 @RestController
@@ -28,6 +30,9 @@ public class PuestoController {
 
 	@Autowired
 	private PuestoService puestoService;
+	
+	@Autowired
+	private PuestoRepository repositoryService;
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Puesto>> List(){
@@ -80,10 +85,19 @@ public class PuestoController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> delete (@PathVariable("id") Long id){
-		if(!puestoService.existsById(id))
-			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
-		puestoService.delete(id);
-		return new ResponseEntity(new Mensaje("Puesto Eliminado"), HttpStatus.OK);
+	public Puesto delete(@PathVariable(name = "id") Long id ) {
+		
+		Optional<Puesto> optional = this.repositoryService.findById(id);
+		if (optional.isPresent()){
+			Puesto puesto = optional.get();
+			this.repositoryService.deleteById(id);
+			
+			return puesto;
+			
+		}else {
+			throw new RuntimeException("titulo sin id"+ id +"no encontrado");
+		}
+		
+		
 	}
 }
