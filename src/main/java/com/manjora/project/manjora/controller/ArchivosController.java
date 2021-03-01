@@ -40,8 +40,8 @@ public class ArchivosController {
 	
 	@GetMapping("/getImage/{imagen}")
 	public ResponseEntity<Resource>getImagen(@PathVariable("imagen")String nombrePath){
-		   String nombrePath1 = nombrePath;
-		   System.out.println("llego esto: "+nombrePath);
+		 
+		 
 			return new ResponseEntity<Resource>(this.imagenService.loadImagen(nombrePath),HttpStatus.ACCEPTED);
 	}
 	
