@@ -1,6 +1,7 @@
 package com.manjora.project.manjora.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,19 @@ import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.TituloDto;
 import com.manjora.project.manjora.entity.Empleado;
 import com.manjora.project.manjora.entity.Titulo;
+import com.manjora.project.manjora.repository.TituloRepository;
 import com.manjora.project.manjora.service.TituloService;
+
 
 @RestController
 @RequestMapping("/titulo")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TituloController {
 
+	@Autowired
+	TituloRepository repository;
+	
+	
 	@Autowired
 	TituloService tituloService;
 	
@@ -90,11 +97,30 @@ public class TituloController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> delete (@PathVariable("id") Long id){
-		if(!tituloService.existsById(id))
-			return new ResponseEntity(new Mensaje("No Existe el estado"), HttpStatus.NOT_FOUND);
-		tituloService.delete(id);
-		return new ResponseEntity(new Mensaje("Estado Eliminado"), HttpStatus.OK);
+	public Titulo delete(@PathVariable(name = "id") Long id ) {
+		
+		Optional<Titulo> optional = this.repository.findById(id);
+		if (optional.isPresent()){
+			Titulo titulo = optional.get();
+			this.repository.deleteById(id);
+			
+			return titulo;
+			
+		}else {
+			throw new RuntimeException("producto sin id"+ id +"no encontrado");
+		}
+		
+		
 	}
+	
+	
+	
+//	@DeleteMapping("/delete/{id}")
+//	public ResponseEntity<?> delete (@PathVariable("id") Long id){
+//		if(!tituloService.existsById(id))
+//			return new ResponseEntity(new Mensaje("No Existe el estado"), HttpStatus.NOT_FOUND);
+//		tituloService.delete(id);
+//		return new ResponseEntity(new Mensaje("Estado Eliminado"), HttpStatus.OK);
+//	}
 	
 }

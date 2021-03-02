@@ -1,8 +1,7 @@
 package com.manjora.project.manjora.dto;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import java.sql.Date;
+
 import javax.validation.constraints.NotBlank;
 
 import com.manjora.project.manjora.entity.Contacto;
@@ -15,8 +14,7 @@ public class ContactoDto {
 	@NotBlank
 	private String nombreContacto;
 	private boolean tipoContacto;
-	private byte fotografia;
-
+	
 	
 	private Contacto contacto;
 
@@ -43,19 +41,23 @@ public class ContactoDto {
 	private UsuarioSec usuario;
 
 	private String referenciaInterna;
+	private Date fechaCreacion;
+	private String pathImagen;
+	
+	
+	
 
 	public ContactoDto() {
 
 	}
 
-	public ContactoDto(@NotBlank String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+	public ContactoDto(@NotBlank String nombreContacto, boolean tipoContacto,Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
-			boolean rol, UsuarioSec usuario, String referenciaInterna) {
+			boolean rol, UsuarioSec usuario, String referenciaInterna,Date fechaCreacion,String imagen) {
 		super();
 		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
-		this.fotografia = fotografia;
 		this.contacto = contacto;
 		this.calle = calle;
 		this.calleSecundaria = calleSecundaria;
@@ -73,6 +75,8 @@ public class ContactoDto {
 		this.rol = rol;
 		this.usuario = usuario;
 		this.referenciaInterna = referenciaInterna;
+		this.fechaCreacion = fechaCreacion;
+		this.pathImagen = imagen;
 	}
 
 	public String getNombreContacto() {
@@ -91,13 +95,6 @@ public class ContactoDto {
 		this.tipoContacto = tipoContacto;
 	}
 
-	public byte getFotografia() {
-		return fotografia;
-	}
-
-	public void setFotografia(byte fotografia) {
-		this.fotografia = fotografia;
-	}
 
 	public Contacto getContacto() {
 		return contacto;
@@ -235,4 +232,21 @@ public class ContactoDto {
 		this.referenciaInterna = referenciaInterna;
 	}
 
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getPathImagen() {
+		return pathImagen;
+	}
+
+	public void setPathImagen(String pathImagen) {
+		this.pathImagen = pathImagen;
+	}
+
+	
 }

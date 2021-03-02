@@ -1,5 +1,7 @@
 package com.manjora.project.manjora.entity;
 
+import java.sql.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Contacto {
 	private Long id;
 	private String nombreContacto;
 	private boolean tipoContacto;
-	private byte fotografia;
+	
 	
 	@OneToOne
 	@JoinColumn(name = "compania_id")
@@ -61,6 +63,8 @@ public class Contacto {
 	private UsuarioSec usuario;
 	
 	private String referenciaInterna;
+	private Date fechaCreacion;
+	private String pathImagen;
 	
 	
 	public Contacto() {
@@ -74,14 +78,13 @@ public class Contacto {
 		this.nombreContacto = nombreContacto;
 	}
 	
-	public Contacto(String nombreContacto, boolean tipoContacto, byte fotografia, Contacto contacto, String calle,
+	public Contacto(String nombreContacto, boolean tipoContacto, Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
-			boolean rol, UsuarioSec usuario, String referenciaInterna) {
+			boolean rol, UsuarioSec usuario, String referenciaInterna,Date fechaCreacion,String imagen) {
 		super();
 		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
-		this.fotografia = fotografia;
 		this.contacto = contacto;
 		this.calle = calle;
 		this.calleSecundaria = calleSecundaria;
@@ -99,6 +102,8 @@ public class Contacto {
 		this.rol = rol;
 		this.usuario = usuario;
 		this.referenciaInterna = referenciaInterna;
+		this.fechaCreacion = fechaCreacion;
+		this.pathImagen = imagen;
 	}
 
 
@@ -129,16 +134,6 @@ public class Contacto {
 
 	public void setTipoContacto(boolean tipoContacto) {
 		this.tipoContacto = tipoContacto;
-	}
-
-
-	public byte getFotografia() {
-		return fotografia;
-	}
-
-
-	public void setFotografia(byte fotografia) {
-		this.fotografia = fotografia;
 	}
 
 
@@ -309,6 +304,26 @@ public class Contacto {
 
 	public void setReferenciaInterna(String referenciaInterna) {
 		this.referenciaInterna = referenciaInterna;
+	}
+
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+
+	public String getPathImagen() {
+		return pathImagen;
+	}
+
+
+	public void setPathImagen(String pathImagen) {
+		this.pathImagen = pathImagen;
 	}
 
 	

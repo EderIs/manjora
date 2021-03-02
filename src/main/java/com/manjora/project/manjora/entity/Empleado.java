@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import com.manjora.project.manjora.security.entity.UsuarioSec;
 
-//dhjd
 
 @Entity
 @Table(name = "empleados")
@@ -86,6 +85,7 @@ public class Empleado {
 			String lugarNacimiento, String nivelCertificado, String escuela, String notaAdicional, UsuarioSec usuario,
 			String nota, boolean estado) {
 		super();
+		
 		this.fotografia = fotografia;
 		this.nombreEmpleado = nombreEmpleado;
 		this.categoria = categoria;
