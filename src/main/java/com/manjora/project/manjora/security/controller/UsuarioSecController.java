@@ -58,6 +58,13 @@ public class UsuarioSecController {
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 
+	@GetMapping("listUser")
+	public List<UsuarioSec>listarUsuarios(){
+		
+		return this.usuarioSecService.getUsuarios();
+		
+	}
+	
 	@GetMapping("/listByEstado")
 	public ResponseEntity<List<String>> ListByEstado() {
 		List<String> list = usuarioSecService.findAllByEstado();

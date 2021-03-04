@@ -15,7 +15,7 @@ import com.manjora.project.manjora.security.entity.UsuarioSec;
 public class Proyecto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
@@ -28,8 +28,16 @@ public class Proyecto {
 		
 	}
 	
+	
+	public Proyecto(Long id, String nombreTarea) {
+		
+		this.id = id;
+		this.nombreTarea = nombreTarea;
+	}
+
+
 	public Proyecto(Long id, UsuarioSec usuario, String nombreTarea) {
-		super();
+		
 		this.id = id;
 		this.usuario = usuario;
 		this.nombreTarea = nombreTarea;

@@ -52,7 +52,17 @@ public class UsuarioSec {
     public UsuarioSec() {
     }
 
-    public UsuarioSec(String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    
+    public UsuarioSec(int id, String nombre,String email) {
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.email = email;
+	}
+
+    
+
+	public UsuarioSec(String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;

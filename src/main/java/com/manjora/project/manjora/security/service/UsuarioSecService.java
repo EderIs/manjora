@@ -55,6 +55,13 @@ public class UsuarioSecService {
 		usuarioRepository.deleteById(id);
 	}
     
+    public List<UsuarioSec>getUsuarios(){
+    	String consulta = "select new UsuarioSec(us.id,us.nombre,us.email) from UsuarioSec us";
+    	
+    	List<UsuarioSec>usuarios = en.createQuery(consulta, UsuarioSec.class).getResultList();
+    	
+    	return usuarios;
+    }
     
     public List<String>findAllByEstado(){
 		

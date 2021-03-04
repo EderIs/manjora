@@ -37,6 +37,14 @@ public class Tarea {
 
 	public Tarea() {}
 	
+	
+	
+	public Tarea(Long id, String nombre) {
+		
+		this.id = id;
+		this.nombre = nombre;
+	}
+	
 	public Tarea(Long id, String nombre, UsuarioSec usuario, Etapa etapa, Date fechaInicio, Date fechaFinal,
 			Boolean estatus) {
 		
