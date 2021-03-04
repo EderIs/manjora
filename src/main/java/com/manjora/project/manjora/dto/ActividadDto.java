@@ -2,7 +2,7 @@ package com.manjora.project.manjora.dto;
 
 import java.sql.Date;
 
-
+import com.manjora.project.manjora.entity.Tarea;
 import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 public class ActividadDto {
@@ -13,12 +13,12 @@ public class ActividadDto {
 	private Date fechaFinal;
 	private UsuarioSec usuario;
 	private Boolean estadoT;
-	
+	private Tarea tarea;
 	
 	public ActividadDto() {}
 	
 	public ActividadDto(String actividad, String resumen, Date fechaInicio, Date fechaFinal, UsuarioSec usuario,
-			Boolean estadoT) {
+			Boolean estadoT,Tarea tarea) {
 		
 		this.actividad = actividad;
 		this.resumen = resumen;
@@ -26,6 +26,7 @@ public class ActividadDto {
 		this.fechaFinal = fechaFinal;
 		this.usuario = usuario;
 		this.estadoT = estadoT;
+		this.tarea = tarea;
 	}
 	public String getActividad() {
 		return actividad;
@@ -62,6 +63,14 @@ public class ActividadDto {
 	}
 	public void setEstadoT(Boolean estadoT) {
 		this.estadoT = estadoT;
+	}
+
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
 	}
 	
 }

@@ -29,12 +29,32 @@ public class Actividad {
 	@JoinColumn(name="usuario_id")
 	private UsuarioSec usuario;
 	
+	@ManyToOne
+	@JoinColumn(name="tarea_id")
+	private Tarea tarea;
+	
 	private Boolean estadoT;
 
 	public Actividad() {}
 	
+	
+	
+	public Actividad(Long id, String actividad, String resumen, java.util.Date fechaFinal,  UsuarioSec usuario
+			,Boolean estadoT) {
+		
+		this.id = id;
+		this.actividad = actividad;
+		this.resumen = resumen;
+		this.fechaFinal = new java.sql.Date(fechaFinal.getTime());
+		this.usuario =  new UsuarioSec(usuario.getId(), usuario.getNombre(),usuario.getPathImagen());
+		this.estadoT = estadoT;
+		
+	}
+
+
+
 	public Actividad(Long id, String actividad, String resumen, Date fechaInicio, Date fechaFinal, UsuarioSec usuario,
-			Boolean estadoT) {
+			Boolean estadoT,Tarea tarea) {
 		
 		this.id = id;
 		this.actividad = actividad;
@@ -43,6 +63,7 @@ public class Actividad {
 		this.fechaFinal = fechaFinal;
 		this.usuario = usuario;
 		this.estadoT = estadoT;
+		this.tarea = tarea;
 	}
 
 	public Long getId() {
@@ -100,4 +121,17 @@ public class Actividad {
 	public void setEstadoT(Boolean estadoT) {
 		this.estadoT = estadoT;
 	}
+
+
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+	
+	
 }
