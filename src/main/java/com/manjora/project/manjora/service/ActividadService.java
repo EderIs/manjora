@@ -26,8 +26,18 @@ public class ActividadService {
 	}
 	
 	
+	public void deleteActividad(Actividad actividad)throws Exception{
+		
+		this.actividadRepository.delete(actividad);
+	}
+	
+	public Actividad getActividad(Long idA) {
+		
+		return this.actividadRepository.findById(idA).get();
+	}
+	
 	public List<Actividad>getActividades(Long idT){
-		String consulta = "select new Actividad(a.id,a.actividad,a.resumen,a.fechaFinal,us,a.estadoT) from "
+		String consulta = "select new Actividad(a.id,a.actividad,a.resumen,a.fechaFinal,a.fechaEntrega,us,a.estadoT) from "
 				+ "Actividad a join a.usuario us join a.tarea t where t.id= "+idT+" ";
 		
 		List<Actividad>actividades = entityManager.createQuery(consulta, Actividad.class).getResultList();

@@ -24,6 +24,7 @@ public class Actividad {
 	private String resumen;
 	private Date fechaInicio;
 	private Date fechaFinal;
+	private String fechaEntrega;
 	
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
@@ -39,16 +40,30 @@ public class Actividad {
 	
 	
 	
-	public Actividad(Long id, String actividad, String resumen, java.util.Date fechaFinal,  UsuarioSec usuario
+	public Actividad(Long id, String actividad, String resumen, java.util.Date fechaFinal ,String fechaEntrega,  UsuarioSec usuario
 			,Boolean estadoT) {
 		
 		this.id = id;
 		this.actividad = actividad;
 		this.resumen = resumen;
 		this.fechaFinal = new java.sql.Date(fechaFinal.getTime());
+		this.fechaEntrega = fechaEntrega;
 		this.usuario =  new UsuarioSec(usuario.getId(), usuario.getNombre(),usuario.getPathImagen());
 		this.estadoT = estadoT;
 		
+	}
+
+
+	public Actividad(String actividad, String resumen, Date fechaInicio, Date fechaFinal,
+			UsuarioSec usuario, Boolean estadoT, Tarea tarea) {
+		
+		this.actividad = actividad;
+		this.resumen = resumen;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.usuario = usuario;
+		this.tarea = tarea;
+		this.estadoT = estadoT;
 	}
 
 
@@ -132,6 +147,14 @@ public class Actividad {
 	public void setTarea(Tarea tarea) {
 		this.tarea = tarea;
 	}
-	
-	
+
+
+
+	public String getFechaEntrega() {
+		return fechaEntrega;
+	}
+
+	public void setFechaEntrega(String fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
 }

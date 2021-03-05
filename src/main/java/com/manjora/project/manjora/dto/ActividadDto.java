@@ -14,6 +14,7 @@ public class ActividadDto {
 	private UsuarioSec usuario;
 	private Boolean estadoT;
 	private Tarea tarea;
+	private Date fechaEntrega;
 	
 	public ActividadDto() {}
 	
@@ -71,6 +72,14 @@ public class ActividadDto {
 
 	public void setTarea(Tarea tarea) {
 		this.tarea = tarea;
+	}
+
+	public Date getFechaEntrega() {
+		return fechaEntrega;
+	}
+
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
 	}
 	
 }
