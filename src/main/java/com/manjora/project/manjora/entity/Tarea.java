@@ -39,10 +39,12 @@ public class Tarea {
 	
 	
 	
-	public Tarea(Long id, String nombre) {
+	public Tarea(Long id, String nombre,UsuarioSec usuario,java.util.Date fechaFinal) {
 		
 		this.id = id;
 		this.nombre = nombre;
+		this.usuario = new UsuarioSec(usuario.getId(), usuario.getNombre(), null);
+		this.fechaFinal = new java.sql.Date(fechaFinal.getTime());
 	}
 	
 	public Tarea(Long id, String nombre, UsuarioSec usuario, Etapa etapa, Date fechaInicio, Date fechaFinal,

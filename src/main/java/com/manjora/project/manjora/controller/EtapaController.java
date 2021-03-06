@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +36,7 @@ public class EtapaController {
 	@PostMapping("/create")
 	public ResponseEntity<?> SaveEtapa(@RequestBody EtapaDto etapaDto) {
 		try {
-			Etapa etapa = new Etapa(Long.parseLong("0"),etapaDto.getNombre(),
+			Etapa etapa = new Etapa(null,etapaDto.getNombre(),
 					etapaDto.getProyecto(),etapaDto.getEstatus());
 			
 			this.etapaService.saveEtapa(etapa);	
@@ -46,5 +47,22 @@ public class EtapaController {
 		}
 	}
 	
+	@PutMapping("/updateE/{id}")
+	public ResponseEntity<?>actualizarEtapa(@PathVariable(name="id")Long idEtapa,@RequestBody EtapaDto etapaDto){
+		try {
+			
+			Etapa etapa = this.etapaService.etapaById(idEtapa);
+			
+			etapa.setNombre(etapaDto.getNombre());
+			etapa.setEstatus(etapaDto.getEstatus());
+			
+			this.etapaService.saveEtapa(etapa);
+			
+			return new ResponseEntity(new Mensaje("Etapa actualizada"),HttpStatus.ACCEPTED);
+		}catch(Exception io) {
+			return new ResponseEntity(new Mensaje("Ocurrio un problema, "+io.getLocalizedMessage()),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 	
 }

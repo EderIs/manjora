@@ -34,7 +34,7 @@ public class TareaService {
 	
 	public List<Tarea> getTareasByEtapa(Long idEtapa) {
 		
-		String consulta = "select new Tarea(t.id,t.nombre) from Tarea t join t.etapa e where e.id="+idEtapa+" ";
+		String consulta = "select new Tarea(t.id,t.nombre,us,t.fechaFinal) from Tarea t join t.usuario us join t.etapa e where e.id="+idEtapa+" ";
 		
 		List<Tarea> tareas = entityManager.createQuery(consulta,Tarea.class).getResultList();
 		
