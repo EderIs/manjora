@@ -53,12 +53,18 @@ public class ActividadController {
 				actividadDto.getResumen(),actividadDto.getFechaInicio(),actividadDto.getFechaFinal(),
 				actividadDto.getUsuario(),actividadDto.getEstadoT(),actividadDto.getTarea());
 		
-		this.actividadService.saveActividad(actividad);
+		
 		
 		if(!actividad.getEstadoT()) {
 			emilService.sendEmail(actividad.getUsuario().getEmail(), actividad.getActividad(),actividad.getResumen());	
+		}else {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+			String strDate= formatter.format(new Date());
+			
+			actividad.setFechaEntrega(strDate);			
 		}
 		
+		this.actividadService.saveActividad(actividad);
 		return new ResponseEntity(actividad,HttpStatus.ACCEPTED);
 		
 	}catch(Exception io) {

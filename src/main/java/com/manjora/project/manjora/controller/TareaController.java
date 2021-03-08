@@ -1,5 +1,6 @@
 package com.manjora.project.manjora.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,21 @@ public class TareaController {
 	@GetMapping("/getTarea/{idTarea}")
 	public Tarea getTarea(@PathVariable(name="idTarea")Long idTarea){
 		return this.tareaService.getByIdTarea(idTarea);
+	}
+	@PostMapping("/create")
+	public ResponseEntity<?>saveTarea(@RequestBody TareaDto tareaDto){
+		try {
+			
+			Tarea tarea = new Tarea(null,tareaDto.getNombre(), 
+					tareaDto.getUsuario(), tareaDto.getEtapa(),tareaDto.getFechaInicio(), 
+					tareaDto.getFechaFinal(), tareaDto.getEstatus());
+			
+		this.tareaService.SaveTarea(tarea);
+		
+		return new ResponseEntity(tarea,HttpStatus.ACCEPTED);
+		}catch(Exception io) {
+			return new ResponseEntity(new Mensaje("Ocurrio un problema, "+io.getLocalizedMessage()),HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping("updateTarea/{id}")

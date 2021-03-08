@@ -27,6 +27,10 @@ public class EtapaService {
 
 	}
 
+	public Etapa etapaById(long id) {
+		return this.etapaRepository.findById(id).get();		
+	}
+	
 	public List<Etapa> getEtapas(long idProyecto) {
 
 		String consulta = "select e from Etapa e join e.proyecto p where p.id= " + idProyecto + " ";
