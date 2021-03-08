@@ -36,7 +36,7 @@ public class ProyectoController {
 	@PostMapping("/save")
 	public ResponseEntity<?>saveProyecto(@RequestBody ProyectoDto proyectoDto){
 		
-		Proyecto proyecto = new Proyecto(Long.parseLong("0"), 
+		Proyecto proyecto = new Proyecto(null, 
 				proyectoDto.getUsuario(), proyectoDto.getNombreTarea());
 		
 		this.proyectoService.saveProyecto(proyecto);
