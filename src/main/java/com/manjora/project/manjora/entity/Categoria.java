@@ -11,26 +11,26 @@ import javax.persistence.Table;
 import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 @Entity
-@Table(name="categoria_nota")
-public class CategoriaNota {
+@Table(name="categoria")
+public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nombreCategoria;
+	private String nombre;
 	@ManyToOne
 	@JoinColumn(name = "notas_id")
 	private Notas notas;
 	
 	
-	public CategoriaNota() {
+	public Categoria() {
 		super();
 	}
 
-	public CategoriaNota(Long id, String nombreCategoria, Notas notas) {
+	public Categoria(Long id, String nombre, Notas notas) {
 		super();
 		this.id = id;
-		this.nombreCategoria = nombreCategoria;
+		this.nombre = nombre;
 		this.notas = notas;
 	}
 
@@ -42,12 +42,12 @@ public class CategoriaNota {
 		this.id = id;
 	}
 
-	public String getNombreCategoria() {
-		return nombreCategoria;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNombreCategoria(String nombreCategoria) {
-		this.nombreCategoria = nombreCategoria;
+	public void setNombre(String nombreCategoria) {
+		this.nombre = nombreCategoria;
 	}
 
 	public Notas getNotas() {

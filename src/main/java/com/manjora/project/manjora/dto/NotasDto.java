@@ -5,15 +5,15 @@ import com.manjora.project.manjora.security.entity.UsuarioSec;
 public class NotasDto {
 
 	private UsuarioSec usuario;
-	private String titulo;
+	private String nombreNotas;
 	public NotasDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public NotasDto(UsuarioSec usuario, String titulo) {
+	public NotasDto(UsuarioSec usuario, String nombreNotas) {
 		super();
 		this.usuario = usuario;
-		this.titulo = titulo;
+		this.nombreNotas = nombreNotas;
 	}
 	public UsuarioSec getUsuario() {
 		return usuario;
@@ -21,11 +21,11 @@ public class NotasDto {
 	public void setUsuario(UsuarioSec usuario) {
 		this.usuario = usuario;
 	}
-	public String getTitulo() {
-		return titulo;
+	public String getNombreNotas() {
+		return nombreNotas;
 	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombreNotas(String nombreNotas) {
+		this.nombreNotas = nombreNotas;
 	}
 
 	

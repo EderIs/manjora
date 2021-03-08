@@ -22,7 +22,7 @@ public class NotaService {
 	
 	public List<Nota>getNotasByIdCategoria(Long idCat){
 		
-		String consulta = "select new Nota(p.id,p.nombre) from Nota p join p.categoria_nota us where us.id= "+idCat+" ";
+		String consulta = "select new Nota(p.id,p.nombre) from Nota p join p.categoria us where us.id= "+idCat+" ";
 		
 		List<Nota> notas = entityManager.createQuery(consulta, Nota.class).getResultList();
 		

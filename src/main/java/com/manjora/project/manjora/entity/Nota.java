@@ -1,6 +1,7 @@
 package com.manjora.project.manjora.entity;
 
 import javax.persistence.Entity;
+import java.sql.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +25,12 @@ public class Nota {
 	private UsuarioSec usuario;
 	
 	@ManyToOne
-	@JoinColumn(name="categoria_nota_id")
-	private CategoriaNota categoriaNota;
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
+	
+	private Date fechaInicio;
+	private Date fechaFinal;
+	private boolean estatus;
 	
 	public Nota() {
 		
@@ -37,12 +42,16 @@ public class Nota {
 		this.nombre = nombre;
 	}
 
-	public Nota(Long id, String nombre, UsuarioSec usuario, CategoriaNota categoriaNota) {
+	public Nota(Long id, String nombre, UsuarioSec usuario, Categoria categoria,
+			Date fechaInicio, Date fechaFinal, boolean estatus) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.usuario = usuario;
-		this.categoriaNota = categoriaNota;
+		this.categoria = categoria;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.estatus = estatus;
 	}
 
 	public Long getId() {
@@ -69,12 +78,36 @@ public class Nota {
 		this.usuario = usuario;
 	}
 
-	public CategoriaNota getCategoriaNota() {
-		return categoriaNota;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setCategoriaNota(CategoriaNota categoriaNota) {
-		this.categoriaNota = categoriaNota;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
+	}
+
+	public boolean isEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(boolean estatus) {
+		this.estatus = estatus;
 	}
 	
 	

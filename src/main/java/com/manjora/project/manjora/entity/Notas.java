@@ -22,25 +22,24 @@ public class Notas {
 	@JoinColumn(name = "usuario_id")
 	private UsuarioSec usuario;
 	
-	private String titulo;
+	private String nombreNotas;
 
 	public Notas() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Notas(Long id, String titulo) {
+	public Notas(Long id, String nombreNotas) {
 		super();
 		this.id = id;
-		this.usuario = usuario;
-		this.titulo = titulo;
+		this.nombreNotas = nombreNotas;
 	}
 	
-	public Notas(Long id, UsuarioSec usuario, String titulo) {
+	public Notas(Long id, UsuarioSec usuario, String nombreNotas) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
-		this.titulo = titulo;
+		this.nombreNotas = nombreNotas;
 	}
 
 	public Long getId() {
@@ -59,12 +58,12 @@ public class Notas {
 		this.usuario = usuario;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNombreNotas() {
+		return nombreNotas;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNombreNotas(String nombreNotas) {
+		this.nombreNotas = nombreNotas;
 	}
 	
 	

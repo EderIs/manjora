@@ -21,7 +21,7 @@ public class NotasService {
 	
 	public List<Notas>getNotasByIdUser(Long idUser){
 		
-		String consulta = "select new Notas(p.id,p.titulo) from Notas p join p.usuario us where us.id= "+idUser+" ";
+		String consulta = "select new Notas(p.id,p.nombreNotas) from Notas p join p.usuario us where us.id= "+idUser+" ";
 		
 		List<Notas> notas = entityManager.createQuery(consulta, Notas.class).getResultList();
 		

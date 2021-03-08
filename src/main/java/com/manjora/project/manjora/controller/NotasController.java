@@ -39,7 +39,7 @@ public class NotasController {
 	public ResponseEntity<?>saveNotas(@RequestBody NotasDto notasDto){
 		
 		Notas notas = new Notas(Long.parseLong("0"), 
-				notasDto.getUsuario(), notasDto.getTitulo());
+				notasDto.getUsuario(), notasDto.getNombreNotas());
 		
 		this.notasService.saveNotas(notas);
 		

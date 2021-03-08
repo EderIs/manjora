@@ -14,29 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.manjora.project.manjora.dto.Mensaje;
-import com.manjora.project.manjora.entity.CategoriaNota;
-import com.manjora.project.manjora.service.CategoriaNotaService;
+import com.manjora.project.manjora.entity.Categoria;
+import com.manjora.project.manjora.service.CategoriaService;
 
 @RestController
-@RequestMapping("/categoriaNota")
+@RequestMapping("/categorias")
 @CrossOrigin(origins = "http://localhost:4200")
-public class CategoriaNotaController {
+public class CategoriaController {
 
 	@Autowired
-	private CategoriaNotaService categoriaNotaService;
+	private CategoriaService categoriaService;
 	
 	@GetMapping("/getCategorias/{idP}")
-	public List<CategoriaNota> getNotas(@PathVariable(name="idP") long idU ){		
-		return this.categoriaNotaService.getCategoriaNota(idU);
+	public List<Categoria> getCategorias(@PathVariable(name="idP") long idU ){		
+		return this.categoriaService.getCategoria(idU);
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<?> SaveCategoriaNota(@RequestBody CategoriaNota categoriaNotaDto) {
+	public ResponseEntity<?> SaveCategoriaNota(@RequestBody Categoria categoriaDto) {
 		try {
-			CategoriaNota categoria = new CategoriaNota(Long.parseLong("0"),categoriaNotaDto.getNombreCategoria(),
-					categoriaNotaDto.getNotas());
+			Categoria categoria = new Categoria(Long.parseLong("0"),categoriaDto.getNombre(),
+					categoriaDto.getNotas());
 			
-			this.categoriaNotaService.saveCategoriaNota(categoria);	
+			this.categoriaService.saveCategoria(categoria);	
 			
 			return new ResponseEntity(categoria.getId(),HttpStatus.ACCEPTED);
 		}catch(Exception ex) {
