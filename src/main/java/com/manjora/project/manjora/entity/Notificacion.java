@@ -19,16 +19,13 @@ public class Notificacion {
 	private long id;
 	private String titulo;
 	private String resumen;
-	private Date fechaLlegada;
+	private String fechaLlegada;
 	private String ruta;
 	
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private UsuarioSec usuarioDestino;
 	
-	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private UsuarioSec usuarioEnvio;
 
 	private boolean estatus;
 	
@@ -36,24 +33,25 @@ public class Notificacion {
 		
 	}
 
-	public Notificacion(long id, String titulo, String resumen, Date fechaLlegada, UsuarioSec usuarioDestino) {
+	public Notificacion(long id, String titulo, String resumen, String fechaLlegada, UsuarioSec usuarioDestino,
+			String ruta) {
 	
 		this.id = id;
 		this.titulo = titulo;
 		this.resumen = resumen;
 		this.fechaLlegada = fechaLlegada;
-		this.usuarioDestino = usuarioDestino;
+		this.usuarioDestino = new UsuarioSec(usuarioDestino.getId(),usuarioDestino.getNombre(),"");
+		this.ruta= ruta;
 	}
 	
-	public Notificacion(long id, String titulo, String resumen, Date fechaLlegada, UsuarioSec usuarioDestino,
-			UsuarioSec usuarioEnvio,boolean estatus,String ruta) {
+	public Notificacion(String titulo, String resumen, String fechaLlegada, UsuarioSec usuarioDestino,
+			boolean estatus,String ruta) {
 		
-		this.id = id;
+		
 		this.titulo = titulo;
 		this.resumen = resumen;
 		this.fechaLlegada = fechaLlegada;
 		this.usuarioDestino = usuarioDestino;
-		this.usuarioEnvio = usuarioEnvio;
 		this.estatus = estatus;
 		this.ruta = ruta;
 	}
@@ -82,11 +80,11 @@ public class Notificacion {
 		this.resumen = resumen;
 	}
 
-	public Date getFechaLlegada() {
+	public String getFechaLlegada() {
 		return fechaLlegada;
 	}
 
-	public void setFechaLlegada(Date fechaLlegada) {
+	public void setFechaLlegada(String fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
 	}
 
@@ -98,13 +96,7 @@ public class Notificacion {
 		this.usuarioDestino = usuarioDestino;
 	}
 
-	public UsuarioSec getUsuarioEnvio() {
-		return usuarioEnvio;
-	}
-
-	public void setUsuarioEnvio(UsuarioSec usuarioEnvio) {
-		this.usuarioEnvio = usuarioEnvio;
-	}
+	
 
 	public boolean isEstatus() {
 		return estatus;

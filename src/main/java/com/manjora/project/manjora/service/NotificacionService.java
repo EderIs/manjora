@@ -2,6 +2,7 @@ package com.manjora.project.manjora.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class NotificacionService {
 	@Autowired
 	private NotificacionRepository notificacionRepository;
 	
+	@Autowired
+	private EntityManager entityManager;
+	
 	public void SaveNotificacion(Notificacion notificacion)throws Exception {		
 		this.notificacionRepository.save(notificacion);		
 	}
@@ -28,11 +32,13 @@ public class NotificacionService {
 		
 	}
 	
-	//public List<Notificacion>getNotificaciones(Long idUsuario){
+	public List<Notificacion>getNotificaciones(Long idUsuario){
 		
-		//return this.notificacionRepository.
-		
-	//}
+		String consulta = "select new Notificacion(n.id,n.titulo,n.resumen,n.fechaLlegada,us,n.ruta) from Notificacion n join n.usuarioDestino us "
+				+ "where us.id = "+idUsuario+" ";
+		List<Notificacion>notificaciones = entityManager.createQuery(consulta,Notificacion.class).getResultList();
+		return notificaciones;
+	}
 	
 	
 }
