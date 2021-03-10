@@ -24,15 +24,18 @@ public class Proyecto {
 	
 	private String nombreTarea;
 
+
+	
 	public Proyecto() {
 		
 	}
 	
 	
-	public Proyecto(Long id, String nombreTarea) {
+	public Proyecto(Long id, String nombreTarea,UsuarioSec usuario) {
 		
 		this.id = id;
 		this.nombreTarea = nombreTarea;
+		this.usuario = new UsuarioSec(0, usuario.getNombre(), null);
 	}
 
 
@@ -66,4 +69,5 @@ public class Proyecto {
 	public void setNombreTarea(String nombreTarea) {
 		this.nombreTarea = nombreTarea;
 	}
+	
 }

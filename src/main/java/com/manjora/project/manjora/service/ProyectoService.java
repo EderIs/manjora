@@ -22,7 +22,9 @@ public class ProyectoService {
 	
 	public List<Proyecto>getProyectosByIdUser(Long idUser){
 		
-		String consulta = "select new Proyecto(p.id,p.nombreTarea) from Proyecto p join p.usuario us where us.id= "+idUser+" ";
+		String consulta = "select DISTINCT new Proyecto(pro.id, pro.nombreTarea,usp) from Tarea t "
+				+ "join t.usuario us right join t.etapa et right join et.proyecto pro join pro.usuario usp "
+				+ "where (usp.id= "+idUser+") or (us.id= "+idUser+") " ;
 		
 		List<Proyecto> proyectos = entityManager.createQuery(consulta, Proyecto.class).getResultList();
 		

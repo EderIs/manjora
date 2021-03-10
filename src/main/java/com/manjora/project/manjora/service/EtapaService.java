@@ -33,7 +33,8 @@ public class EtapaService {
 	
 	public List<Etapa> getEtapas(long idProyecto) {
 
-		String consulta = "select e from Etapa e join e.proyecto p where p.id= " + idProyecto + " ";
+		String consulta = "select e from Etapa e join e.proyecto p where "
+				+ "p.id= " + idProyecto + " and e.estatus = 1 ";
 
 		List<Etapa> etapas = entityManager.createQuery(consulta, Etapa.class).getResultList();
 
