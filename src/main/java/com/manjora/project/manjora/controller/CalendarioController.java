@@ -29,6 +29,7 @@ import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.entity.Calendario;
 import com.manjora.project.manjora.entity.Contacto;
 import com.manjora.project.manjora.service.CalendarioService;
+import com.manjora.project.manjora.service.EmailService;
 
 @RestController
 @RequestMapping("/calendario")
@@ -37,6 +38,9 @@ public class CalendarioController {
 
 	@Autowired
 	private CalendarioService calendarioService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping("/mostrar/{fechaI}&{fechaF}&{idUser}")
 	public List<Calendario>getFechas(@PathVariable(name="fechaI") java.sql.Date fechaI,
