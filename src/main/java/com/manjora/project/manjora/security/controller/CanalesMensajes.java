@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,4 +46,22 @@ public class CanalesMensajes {
 	        	return null;
 	        }
 	    } 
+	 
+	 
+	 @MessageMapping("/send/message/{Channel}")
+	 private String chat(@DestinationVariable("Channel")String channel, String chat) {
+		 
+		 try {
+			
+			 
+			 
+			 
+			 return "";
+			 
+		 }catch(Exception io) {
+			 return "";
+		 }
+	 }
+	 
+	 
 }

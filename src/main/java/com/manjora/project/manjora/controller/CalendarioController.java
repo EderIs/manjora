@@ -42,6 +42,7 @@ public class CalendarioController {
 	@Autowired
 	private EmailService emailService;
 	
+	
 	@GetMapping("/mostrar/{fechaI}&{fechaF}&{idUser}")
 	public List<Calendario>getFechas(@PathVariable(name="fechaI") java.sql.Date fechaI,
 			@PathVariable(name="fechaF")java.sql.Date fechaF,@PathVariable(name="idUser") long idUser){
@@ -86,10 +87,15 @@ public class CalendarioController {
 	@PostMapping("/create")
 	public ResponseEntity<?>insertCalendario(@RequestBody CalendarioDto calendarioDto) throws Exception{
 		
+		List<Contacto>contactosNot = new ArrayList<Contacto>();
 		if(calendarioDto.getContactos().size() == 0) 
 			return new ResponseEntity(new Mensaje("Es necesario por lo menos un contacto"),HttpStatus.BAD_REQUEST);
 		
 		for (Contacto contacto : calendarioDto.getContactos()) {
+			
+			if(contacto.getNombreContacto() != "yo") {
+				contactosNot.add(contacto);
+			}
 			
 			if(calendarioService.existCalendarioByHoras(calendarioDto.getFecha(),
 					calendarioDto.getHoraInicio(), calendarioDto.getHoraFinal(), contacto.getId()) >= 1) {
@@ -98,10 +104,8 @@ public class CalendarioController {
 				}else {
 					return new ResponseEntity(new Mensaje("El usuario: "+contacto.getNombreContacto()+" Tiene una fecha asignada"),HttpStatus.BAD_REQUEST);	
 				}
-				
 			}
 		}
-		
 			Set<Contacto>contactos = new HashSet<Contacto>();
 		
 		contactos = calendarioDto.getContactos();
@@ -114,9 +118,28 @@ public class CalendarioController {
 		
 		calendarioService.SaveCalendario(calendario);
 		
+		enviarCorreo(contactosNot, calendario);
+		
 		return new ResponseEntity(new Mensaje("Fecha registrada"),HttpStatus.ACCEPTED);
 		
 	}
+	
+	
+	private void enviarCorreo(List<Contacto> contactos, Calendario calendario) {
+		
+		for(Contacto contacto : contactos) {
+			if(contacto.getCorreoElectronico()!=null || contacto.getCorreoElectronico() != "") {	
+				String body = "Tienes un evento nuevo: "+calendario.getResumen()+"\n"
+						+"Fecha del evento: "+calendario.getFecha()+"\n"
+						+"Hora de inicio: "+calendario.getHoraInicio()+"\n"
+								+ "Hora final: "+calendario.getHoraFinal()+" ";
+				
+				emailService.sendEmail(contacto.getCorreoElectronico(),calendario.getResumen(), body);
+				
+			}	
+		}
+	}
+	
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?>editarCalendario(@PathVariable(name="id")Long id,@RequestBody CalendarioDto calendarioDto)throws Exception{
