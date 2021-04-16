@@ -27,6 +27,19 @@ public class UsuarioSecDao {
 	
     private Date ultimoAcceso;
 	
+<<<<<<< HEAD:src/main/java/com/manjora/project/manjora/security/dto/UsuarioSecDao.java
+=======
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String nombreUsuario;
+	private String direccionCorreo;
+	private String contrasena;
+	private Date fechaCreacion;
+	private Date ultimoAcceso;
+>>>>>>> main:src/main/java/com/manjora/project/manjora/entity/Usuario.java
 	private boolean estado;
     	
 	private String pathImagen;
@@ -137,6 +150,7 @@ public class UsuarioSecDao {
 		this.estado = estado;
 	}
 
+<<<<<<< HEAD:src/main/java/com/manjora/project/manjora/security/dto/UsuarioSecDao.java
 	
 	public Set<RolSec> getRoles() {
 		return roles;
@@ -159,5 +173,10 @@ public class UsuarioSecDao {
 		this.pathImagen = pathImagen;
 	}
 	
+=======
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+>>>>>>> main:src/main/java/com/manjora/project/manjora/entity/Usuario.java
 	
 }
