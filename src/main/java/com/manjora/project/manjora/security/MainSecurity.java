@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 
 import com.manjora.project.manjora.security.jwt.JwtEntryPoint;
 import com.manjora.project.manjora.security.jwt.JwtTokenFilter;
@@ -67,6 +68,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        
+        //--Obtener la ip de los usuarios llegantes--
+        //http.addFilterBefore(new SecurityFilter(),UsernamePasswordAuthenticationFilter.class);
+        
     }
 	
 }

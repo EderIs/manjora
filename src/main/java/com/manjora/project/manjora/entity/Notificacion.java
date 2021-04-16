@@ -34,7 +34,7 @@ public class Notificacion {
 	}
 
 	public Notificacion(long id, String titulo, String resumen, String fechaLlegada, UsuarioSec usuarioDestino,
-			String ruta) {
+			String ruta,boolean estatus) {
 	
 		this.id = id;
 		this.titulo = titulo;
@@ -42,6 +42,7 @@ public class Notificacion {
 		this.fechaLlegada = fechaLlegada;
 		this.usuarioDestino = new UsuarioSec(usuarioDestino.getId(),usuarioDestino.getNombre(),"");
 		this.ruta= ruta;
+		this.estatus = estatus;
 	}
 	
 	public Notificacion(String titulo, String resumen, String fechaLlegada, UsuarioSec usuarioDestino,

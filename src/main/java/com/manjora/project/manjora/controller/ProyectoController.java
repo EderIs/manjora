@@ -38,11 +38,8 @@ public class ProyectoController {
 		
 		Proyecto proyecto = new Proyecto(null, 
 				proyectoDto.getUsuario(), proyectoDto.getNombreTarea());
-		
 		this.proyectoService.saveProyecto(proyecto);
-		
-		return new ResponseEntity(new Mensaje("Proyecto Creado"),HttpStatus.ACCEPTED);
-		
+		return new ResponseEntity(proyecto,HttpStatus.ACCEPTED);	
 	}
 	
 }

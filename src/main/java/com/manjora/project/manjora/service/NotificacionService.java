@@ -32,9 +32,14 @@ public class NotificacionService {
 		
 	}
 	
+	public Notificacion getNotificacion(Long id) {
+		
+		return this.notificacionRepository.findById(id).get();
+	}
+	
 	public List<Notificacion>getNotificaciones(Long idUsuario){
 		
-		String consulta = "select new Notificacion(n.id,n.titulo,n.resumen,n.fechaLlegada,us,n.ruta) from Notificacion n join n.usuarioDestino us "
+		String consulta = "select new Notificacion(n.id,n.titulo,n.resumen,n.fechaLlegada,us,n.ruta,n.estatus) from Notificacion n join n.usuarioDestino us "
 				+ "where us.id = "+idUsuario+" ";
 		List<Notificacion>notificaciones = entityManager.createQuery(consulta,Notificacion.class).getResultList();
 		return notificaciones;

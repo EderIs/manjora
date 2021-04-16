@@ -56,7 +56,9 @@ public class ActividadController {
 		
 		
 		if(!actividad.getEstadoT()) {
-			emilService.sendEmail(actividad.getUsuario().getEmail(), actividad.getActividad(),actividad.getResumen());	
+			String contenido = actividad.getResumen()+"\n"+
+		"<a href='http://localhost:4200/#/proyecto/tarea/"+actividad.getTarea().getId()+"_t'>Ir a la Actividad</a>";
+			emilService.sendEmail(actividad.getUsuario().getEmail(), actividad.getActividad(),contenido);	
 		}else {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
 			String strDate= formatter.format(new Date());

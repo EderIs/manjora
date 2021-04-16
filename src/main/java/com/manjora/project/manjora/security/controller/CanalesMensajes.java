@@ -4,10 +4,14 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +32,7 @@ public class CanalesMensajes {
 	    public Notificacion notification(NotificacionDto notificacionDto) {    
 	        try {
 	        	
-	        	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+	        	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String strDate= formatter.format(new java.util.Date());
 				
 	        	 Notificacion notificacion = new Notificacion(notificacionDto.getTitulo()
@@ -36,10 +40,28 @@ public class CanalesMensajes {
 	    				 , notificacionDto.getUsuarioDestino(),true,notificacionDto.getRuta());
 	    		 
 	    		 this.notificacionService.SaveNotificacion(notificacion);
-	    		 
+	    		
 	    	        return notificacion;    	
 	        }catch(Exception io) {
 	        	return null;
 	        }
 	    } 
+	 
+	 
+	 @MessageMapping("/send/message/{Channel}")
+	 private String chat(@DestinationVariable("Channel")String channel, String chat) {
+		 
+		 try {
+			
+			 
+			 
+			 
+			 return "";
+			 
+		 }catch(Exception io) {
+			 return "";
+		 }
+	 }
+	 
+	 
 }
