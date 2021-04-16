@@ -26,13 +26,26 @@ public class CategoriaService {
 
 	}
 
-	public List<Categoria> getCategoria(long idCategoria) {
+	public List<Categoria> getCategoria(long idUser) {
 
-		String consulta = "select e from Categoria e join e.notas p where p.id= " + idCategoria + " ";
-
+		String consulta = "select DISTINCT new Categoria(cat.id, cat.nombre,usp) from Nota n "
+				+ "join n.usuario us right join n.categoria cat join cat.usuario usp "
+				+ "where (usp.id= "+idUser+") or (us.id= "+idUser+") " ;
 		List<Categoria> categorias = entityManager.createQuery(consulta, Categoria.class).getResultList();
 
 		return categorias;
+	}
+	
+	public void delete(Long id) {
+		categoriaRepository.deleteById(id);
+	}
+
+	public boolean existsById(Long id) {
+		return categoriaRepository.existsById(id);
+	}
+	
+	public Categoria categoriaById(long id) {
+		return this.categoriaRepository.findById(id).get();		
 	}
 
 }

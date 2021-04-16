@@ -1,18 +1,18 @@
 package com.manjora.project.manjora.dto;
 
-import com.manjora.project.manjora.entity.Notas;
+import com.manjora.project.manjora.security.entity.UsuarioSec;
 
 public class CategoriaNotaDto {
 	private String nombre;
-	private Notas notas;
+	private UsuarioSec usuario;
 	public CategoriaNotaDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CategoriaNotaDto(String nombre, Notas notas) {
+	public CategoriaNotaDto(String nombre, UsuarioSec usuario) {
 		super();
 		this.nombre = nombre;
-		this.notas = notas;
+		this.usuario = usuario;
 	}
 	public String getNombre() {
 		return nombre;
@@ -20,12 +20,11 @@ public class CategoriaNotaDto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Notas getNotas() {
-		return notas;
+	public UsuarioSec getUsuario() {
+		return usuario;
 	}
-	public void setNotas(Notas notas) {
-		this.notas = notas;
+	public void setUsuario(UsuarioSec usuario) {
+		this.usuario = usuario;
 	}
-	
 	
 }

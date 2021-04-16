@@ -54,7 +54,7 @@ public class ContactoDto {
 	public ContactoDto(@NotBlank String nombreContacto, boolean tipoContacto,Contacto contacto, String calle,
 			String calleSecundaria, String ciudad, Estado estado, int codigoPostal, String nif, String puestoTrabajo,
 			String telefono, String movil, String correoElectronico, String sitioWeb, Titulo titulo, String notas,
-			boolean rol, UsuarioSec usuario, String referenciaInterna,Date fechaCreacion,String imagen) {
+			boolean rol, UsuarioSec usuario, String referenciaInterna,Date fechaCreacion,String pathImagen) {
 		super();
 		this.nombreContacto = nombreContacto;
 		this.tipoContacto = tipoContacto;
@@ -76,7 +76,7 @@ public class ContactoDto {
 		this.usuario = usuario;
 		this.referenciaInterna = referenciaInterna;
 		this.fechaCreacion = fechaCreacion;
-		this.pathImagen = imagen;
+		this.pathImagen = pathImagen;
 	}
 
 	public String getNombreContacto() {

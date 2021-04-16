@@ -19,19 +19,19 @@ public class Categoria {
 	private Long id;
 	private String nombre;
 	@ManyToOne
-	@JoinColumn(name = "notas_id")
-	private Notas notas;
+	@JoinColumn(name = "usuario_id")
+	private UsuarioSec usuario;
 	
 	
 	public Categoria() {
 		super();
 	}
 
-	public Categoria(Long id, String nombre, Notas notas) {
+	public Categoria(Long id, String nombre, UsuarioSec usuario) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.notas = notas;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
@@ -50,12 +50,12 @@ public class Categoria {
 		this.nombre = nombreCategoria;
 	}
 
-	public Notas getNotas() {
-		return notas;
+	public UsuarioSec getUsuario() {
+		return usuario;
 	}
 
-	public void setNotas(Notas notas) {
-		this.notas = notas;
+	public void setUsuario(UsuarioSec usuario) {
+		this.usuario = usuario;
 	}
 	
 	

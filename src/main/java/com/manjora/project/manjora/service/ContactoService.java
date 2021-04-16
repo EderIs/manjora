@@ -65,11 +65,11 @@ public class ContactoService {
 	
 	public Long getContactoId(int idUser) {
 		
-			String consulta = "select c.id from Contacto c join c.usuario us where us.id = "+idUser+" ";
-			
-			Long contactoI = entityManager.createQuery(consulta, Long.class).getSingleResult(); 
-			
-			return contactoI;			
-	}
+		String consulta = "select c.id from Contacto c join c.usuario us where us.id = "+idUser+" ";
+		
+		Long contactoI = entityManager.createQuery(consulta, Long.class).getSingleResult(); 
+		
+		return contactoI;			
+}
 
 }

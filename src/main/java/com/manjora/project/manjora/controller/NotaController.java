@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.manjora.project.manjora.dto.Mensaje;
 import com.manjora.project.manjora.dto.NotaDto;
-import com.manjora.project.manjora.dto.NotasDto;
 import com.manjora.project.manjora.dto.TareaDto;
 import com.manjora.project.manjora.entity.Categoria;
 import com.manjora.project.manjora.entity.Nota;
-import com.manjora.project.manjora.entity.Notas;
 import com.manjora.project.manjora.entity.Tarea;
 import com.manjora.project.manjora.security.entity.UsuarioSec;
 import com.manjora.project.manjora.service.NotaService;
@@ -34,9 +33,9 @@ public class NotaController {
 	@Autowired
 	private NotaService notaService;
 	
-	@GetMapping("/getNotas/{idCategoria}")
-	public List<Nota>getNota(@PathVariable(name="idCategoria")Long idCategoria){
-		return this.notaService.getNotasByIdCategoria(idCategoria);
+	@GetMapping("/getNotas/{idNota}")
+	public List<Nota>getNota(@PathVariable(name="idNota")Long idNota){
+		return this.notaService.getNotasByIdCategoria(idNota);
 	}
 
 	@GetMapping("/getNota/{idNota}")
@@ -44,8 +43,8 @@ public class NotaController {
 		return this.notaService.getByIdNota(idNota);
 	}
 	
-	@PutMapping("updateNota/{id}")
-	private ResponseEntity<?>updateNotaById(@PathVariable(name="id")Long idNota , 
+	@PutMapping("updateNota/{idNota}")
+	private ResponseEntity<?>updateNotaById(@PathVariable(name="idNota")Long idNota , 
 			@RequestBody NotaDto notaDto){
 		
 	try {
@@ -63,7 +62,7 @@ public class NotaController {
 	
 	}
 	
-	@PutMapping("updateNota2/{id}")
+	@PutMapping("updateNotaA/{id}")
 	private ResponseEntity<?>updateNotaById2(@PathVariable(name="id")Long idNota , 
 			@RequestBody NotaDto notaDto){
 		
@@ -80,7 +79,7 @@ public class NotaController {
 		
 		this.notaService.saveNota(nota);
 		
-		return new ResponseEntity(new Mensaje("Ok"),HttpStatus.ACCEPTED);
+		return new ResponseEntity(nota,HttpStatus.ACCEPTED);
 	}catch(Exception io) {
 		return new ResponseEntity(new Mensaje("No se actualizo"),HttpStatus.BAD_REQUEST);
 	}
@@ -96,7 +95,15 @@ public class NotaController {
 		
 		this.notaService.saveNota(notas);
 		
-		return new ResponseEntity(new Mensaje("Nota Creado"),HttpStatus.ACCEPTED);
+		return new ResponseEntity(notas,HttpStatus.ACCEPTED);
 		
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<?> delete (@PathVariable("id") Long id){
+		if(!notaService.existsById(id))
+			return new ResponseEntity(new Mensaje("No Existe"), HttpStatus.NOT_FOUND);
+		notaService.delete(id);
+		return new ResponseEntity(new Mensaje("Estado Eliminado"), HttpStatus.OK);
 	}
 }

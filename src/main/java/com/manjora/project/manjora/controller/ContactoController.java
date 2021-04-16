@@ -60,7 +60,7 @@ public class ContactoController {
 		}
 		
 	}
-
+	
 	@GetMapping("/contactoU/{id}")
 	public Long contactoUs(@PathVariable(name="id")int idCont) {
 		return this.contactoService.getContactoId(idCont);
@@ -84,7 +84,6 @@ public class ContactoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody ContactoDto contactoDto){
-		String pathImagen = "";
 		try {
 		if(StringUtils.isBlank(contactoDto.getNombreContacto()))
 			return new ResponseEntity(new Mensaje("El Nombre del Contacto es Obligatorio"), HttpStatus.BAD_REQUEST);
@@ -98,8 +97,9 @@ public class ContactoController {
 				contactoDto.getMovil(),contactoDto.getCorreoElectronico(),contactoDto.getSitioWeb(),
 				contactoDto.getTitulo(),contactoDto.getNotas(),contactoDto.isRol(),
 				contactoDto.getUsuario(),contactoDto.getReferenciaInterna(),
-				contactoDto.getFechaCreacion(),null);
-		contacto.setPathImagen(contactoDto.getPathImagen());
+				contactoDto.getFechaCreacion(),
+				contactoDto.getPathImagen());
+		
 		contactoService.save(contacto);
 		return new ResponseEntity(new Mensaje("Contacto Creado"),HttpStatus.OK);
 		} catch (Exception ex) {
@@ -133,7 +133,7 @@ public class ContactoController {
 		contacto.setSitioWeb(contactoDto.getSitioWeb());
 		contacto.setTitulo(contactoDto.getTitulo());
 		contacto.setNotas(contactoDto.getNotas());
-		contacto.setRol(contacto.isRol());
+		contacto.setRol(contactoDto.isRol());
 		contacto.setUsuario(contactoDto.getUsuario());
 		contacto.setReferenciaInterna(contactoDto.getReferenciaInterna());
 		

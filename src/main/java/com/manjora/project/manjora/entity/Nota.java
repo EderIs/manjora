@@ -1,5 +1,6 @@
 package com.manjora.project.manjora.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import java.sql.Date;
 import javax.persistence.GeneratedValue;
@@ -52,6 +53,14 @@ public class Nota {
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.estatus = estatus;
+	}
+	
+public Nota(Long id, String nombre,UsuarioSec usuario,java.util.Date fechaFinal) {
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.usuario = new UsuarioSec(usuario.getId(), usuario.getNombre(), null);
+		this.fechaFinal = new java.sql.Date(fechaFinal.getTime());
 	}
 
 	public Long getId() {

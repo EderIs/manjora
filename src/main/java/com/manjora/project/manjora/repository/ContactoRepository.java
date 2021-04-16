@@ -17,5 +17,4 @@ public interface ContactoRepository extends JpaRepository<Contacto, Long> {
 	List<Contacto>findAllByNombre(String nombre);
 	Optional<Contacto> findByNombreContacto(String nombreContacto);
 	boolean existsByNombreContacto(String nombreContacto);
-	
 }
